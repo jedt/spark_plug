@@ -2,6 +2,10 @@
 
 Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project. It uses the Authsome component and uses a very simple access control routine. 
 
+Sample Ideas:
+
+- Forum, Q&A site, Dating site, Review site, Blog/Microblog Twitter clone.
+
 ## Features
 
 - Easy to install. This is totally subjective but is one of the main features.
@@ -56,3 +60,8 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 - You should see the dashboard now with a logout link.
 
 - To test the registration form just click the Not registerd yet? Click here link.
+
+- to override the plugin views such as the login and registration pages. Put the following in your app/view/ folder.
+
+	`plugins/spark_plug/users/login.ctp`
+	`plugins/spark_plug/users/register.ctp`
