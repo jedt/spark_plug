@@ -7,7 +7,7 @@ class User extends SparkPlugAppModel {
 	var $belongsTo = array('SparkPlug.UserGroup');
 
 	var $hasOne = array('SparkPlug.Company','SparkPlug.LoginToken');
-	
+
 	var $validate = array(
 				"username" => array(
 					'mustUnique'=>array(
@@ -79,11 +79,6 @@ class User extends SparkPlugAppModel {
 		}
         return $data;
     }
-	function logout()
-	{
-		unset($_SESSION);
-		return 'login';
-	}
 	function authsomeLogin($type, $credentials = array())
 	{
 		switch ($type) {
@@ -133,7 +128,7 @@ class User extends SparkPlugAppModel {
 
         return $this->find('first', compact('conditions'));
     }
-	
+
 	function authsomePersist($user, $duration) {
 		$token = md5(uniqid(mt_rand(), true));
 		$userId = $user['User']['id'];
