@@ -7,8 +7,11 @@ class UserGroup extends SparkPlugAppModel
 
 	function isGuestAccess($access)
 	{
+		if (empty($access) || $access=='/')
+			return true;
+		
 		$permissions = $this->getPermissions(3);
-
+		
 		if (!in_array(ucwords($access), $permissions))
 		{
 			//check if permission is a wildcard
@@ -33,6 +36,8 @@ class UserGroup extends SparkPlugAppModel
 	function getPermissions($id=3)
 	{
 		//get public controller actions
+		$permissions[] = '/'; 
+		
 		$actions = $this->UserGroupPermission->find('all',array('conditions'=>'UserGroupPermission.user_group_id = '.$id));
 		foreach ($actions as $action)
 		{
