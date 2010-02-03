@@ -34,7 +34,7 @@ class UserGroupPermissionFixture extends CakeTestFixture
 			'allowed'=>1
 		),
 		array(
-			'id'=>2,
+			'id'=>5,
 			'user_group_id'=>2,
 			'controller'=>'Websites',
 			'action'=>'*',
