@@ -39,17 +39,17 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 
 ## Installation
 
-- Copy the spark_plug folder into the plugin/ directory.
+- Copy the spark_plug folder into the app/plugin/ directory.
 - Run all the sql files in the spark_plug/config/schema/ directory.
 - open your app/config/core.php and add the line below:
 	
-	include_once(ROOT.'/app/plugins/spark_plug/config/config.php');
+	`include_once(ROOT.'/app/plugins/spark_plug/config/config.php');`
 
 - open your app/config/routes.php
 
-	include_once(ROOT.'/app/plugins/spark_plug/config/routes.php');
+	`include_once(ROOT.'/app/plugins/spark_plug/config/routes.php');`
 	
-- Go to the login page [http://localhost/mysite/users/login]http://localhost/mysite/users/login
+- Go to the login page [http://localhost/mysite/users/login](http://localhost/mysite/users/login)
  - type in username: admin 
  - password: 1234
 
