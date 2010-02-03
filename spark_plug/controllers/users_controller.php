@@ -115,39 +115,6 @@ class UsersController extends SparkPlugAppController {
 		$this->redirect('/dashboard');
     }
 
-	function _login()
-	{
-		$this->layout = Configure::read('front_end_layout');
-		$guest = Authsome::get();
-debug($guest);
-die();
-		
-		if (isset($_GET["ident"]))
-		{
-			if ($this->User->activateAccount($_GET))
-			{
-				$this->flash("Thank you. Your account is now active.","login");
-			} else {
-				$this->flash("Sorry. There were problems in your account activation.","login");
-			}
-		} else {
-			if (isset($user['success']))
-			{
-				$user = $this->User->read(null,$user["User"]["id"]);
-				$this->Session->write("User",$user);
-				$this->Session->write("User.id",$user["User"]["id"]);
-				$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
-				$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
-				$this->Session->write('Company.id',$user['Company']['id']);
-				$this->redirect("/dashboard");
-			}
-			elseif (isset($user['error']))
-			{
-				$this->flash($user['error']['message'],'login');
-			}
-		}
-	}
-
 	function forgotPassword()
 	{
 		$this->layout = Configure::read('front_end_layout');
@@ -165,7 +132,7 @@ die();
 
 	function beforeFilter()
 	{
-		
+
 		parent::beforeFilter();
 		
 		$pageRedirect = $this->Session->read('permission_error_redirect');
