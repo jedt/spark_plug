@@ -53,6 +53,8 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 
 	`include_once(ROOT.'/app/plugins/spark_plug/config/routes.php');`
 	
+- open the app/plugins/spark_plug/config/config.php and change according to your setup.
+
 - Go to the login page [http://localhost/mysite/users/login](http://localhost/mysite/users/login)
  - type in username: admin 
  - password: 1234
