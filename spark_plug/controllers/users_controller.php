@@ -77,13 +77,14 @@ class UsersController extends SparkPlugAppController {
 		{
 			if ($this->User->changePassword($this->data))
 			{
-				$this->flash('Password has changed.',Configure::read('httpRootUrl').'/users/login');
+				$this->flash('Password has changed.',Configure::read('httpRootUrl').'/dashboard');
 			}
 		}
 		else
 		{
 			$userID = $this->Session->read('User.id');
 			$this->data = $this->User->read(null,$userID);
+			$this->data['User']['password']='';
 		}
 	}
 
