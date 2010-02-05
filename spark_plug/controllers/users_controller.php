@@ -2,7 +2,7 @@
 class UsersController extends SparkPlugAppController {
 
 	var $name = 'Users';
-	
+
 	var $layout_settings = array("columns"=>"1");
 	var $uses = array('SparkPlug.User');
 
@@ -53,11 +53,11 @@ class UsersController extends SparkPlugAppController {
 				$return = $this->User->activatePassword($this->data);
 				if ($return)
 				{
-					$this->flash('New password is saved.','login','success');
+					$this->flash('New password is saved.',Configure::read('httpRootUrl').'/users/login');
 				}
 				else
 				{
-					$this->flashError('Sorry password could not be saved.','activate_password');
+					$this->flash('Sorry password could not be saved. Please check your email and click the password reset link again.',Configure::read('httpRootUrl').'/users/login');
 				}
 			}
 		}
@@ -77,7 +77,7 @@ class UsersController extends SparkPlugAppController {
 		{
 			if ($this->User->changePassword($this->data))
 			{
-				$this->flash('Password has changed.','change_password','success');
+				$this->flash('Password has changed.',Configure::read('httpRootUrl').'/users/login');
 			}
 		}
 		else
@@ -86,33 +86,45 @@ class UsersController extends SparkPlugAppController {
 			$this->data = $this->User->read(null,$userID);
 		}
 	}
-	
+
 	function login()
 	{
-        if (empty($this->data)) {
-            return;
-        }
-
-        $user = Authsome::login($this->data['User']);
-
-        if (!$user) {
-            $this->Session->setFlash('Unknown user or wrong password');
-            return;
-        }
-
-		$remember = (!empty($this->data['User']['remember']));
-		if ($remember)
+		if (isset($_GET["ident"]))
 		{
-			Authsome::persist('2 weeks');
+			if ($this->User->activateAccount($_GET))
+			{
+				$this->flash("Thank you. Your account is now active.",Configure::read('httpRootUrl').'/users/login');
+			} else {
+				$this->flash("Sorry. There were problems in your account activation.",Configure::read('httpRootUrl').'/users/login');
+			}
 		}
+		else
+		{
+			if (empty($this->data)) {
+				return;
+			}
 
-		$this->Session->write("User",$user);
-		$this->Session->write("User.id",$user["User"]["id"]);
-		$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
-		$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
-		$this->Session->write('Company.id',$user['Company']['id']);
-		
-		$this->redirect('/dashboard');
+			$user = Authsome::login($this->data['User']);
+
+			if (!$user) {
+				$this->Session->setFlash('Unknown user or wrong password');
+				return;
+			}
+
+			$remember = (!empty($this->data['User']['remember']));
+			if ($remember)
+			{
+				Authsome::persist('2 weeks');
+			}
+
+			$this->Session->write("User",$user);
+			$this->Session->write("User.id",$user["User"]["id"]);
+			$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
+			$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
+			$this->Session->write('Company.id',$user['Company']['id']);
+
+			$this->redirect('/dashboard');
+		}
     }
 
 	function forgotPassword()
@@ -134,10 +146,10 @@ class UsersController extends SparkPlugAppController {
 	{
 
 		parent::beforeFilter();
-		
+
 		$pageRedirect = $this->Session->read('permission_error_redirect');
 		$this->Session->delete('permission_error_redirect');
-		
+
 		if (empty($pageRedirect))
 		{
 			if (!$this->Authsome->get('id'))
