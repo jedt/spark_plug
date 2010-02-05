@@ -38,6 +38,8 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 
 ## Todo
 
+- Admin's Permission CRUD
+- Admin's User CRUD, reset password.
 - Open ID Registration.
 - Captcha on Registration.
 
@@ -66,4 +68,11 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 - to override the plugin views such as the login and registration pages. Put the following in your app/view/ folder.
 
 	`plugins/spark_plug/users/login.ctp`
+	
 	`plugins/spark_plug/users/register.ctp`
+	
+## Contributors
+
+[Aquive](http://github.com/Aquive)
+
+[jedt](http://github.com/jedt)
