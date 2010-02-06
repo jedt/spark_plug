@@ -33,12 +33,12 @@ class UserGroup extends SparkPlugAppModel
 
 		return true;
 	}
-	function getPermissions($id=3)
+	function getPermissions($userGroupID=3)
 	{
 		//get public controller actions
 		$permissions[] = '/'; 
 		
-		$actions = $this->UserGroupPermission->find('all',array('conditions'=>'UserGroupPermission.user_group_id = '.$id));
+		$actions = $this->UserGroupPermission->find('all',array('conditions'=>'UserGroupPermission.user_group_id = '.$userGroupID));
 		foreach ($actions as $action)
 		{
 			$permissions[] = $action['UserGroupPermission']['controller'].'/'.$action['UserGroupPermission']['action'];
