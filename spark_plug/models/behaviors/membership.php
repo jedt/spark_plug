@@ -16,6 +16,11 @@ class MembershipBehavior extends ModelBehavior
 			$this->settings[$Model->alias], (array)$settings);
 	}
 
+	function getActivationKey(&$Model,$password)
+	{
+		$salt = Configure::read ( "Security.salt" );
+		return md5(md5($password).$salt);
+	}
 	function sendRegistrationEmail(&$Model)
 	{
 		$mail = new phpmailer();
@@ -23,8 +28,7 @@ class MembershipBehavior extends ModelBehavior
 		$mail->Subject = $Model->getEmailSubjectNew();
 		$message = $Model->getEmailBodyNew();
 		
-		$salt = Configure::read ( "Security.salt" );
-		$activate_key = md5 (md5($Model->data['User']['password']).$salt );
+		$activate_key = $this->getActivationKey($Model,$Model->data['User']['password']);
 
 		$id = $Model->getLastInsertID();
 		$Model->updateAll(array('password'=>"'".md5($Model->data['User']['password'])."'"),'User.id = '.$id);
