@@ -1,6 +1,6 @@
 ## Description
 
-Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project. It uses the Authsome component and uses a very simple access control routine. 
+Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project. It uses the Authsome component and uses a very simple access control routine.
 
 Sample Ideas:
 
@@ -12,15 +12,15 @@ Sample Ideas:
 
 - Multi User Registration/Login. This enables your project to have multi-user access. For example you want to write a forum site. This plug-in provides below:
 
- - Registration form - Users have to fill-up the registration form and it will send an activation email. After activation the user's password is hashed for security.
+ 1. Registration form - Users have to fill-up the registration form and it will send an activation email. After activation the user's password is hashed for security.
 
- - Login Form - The page to login your username and password.
+ 2. Login Form - The page to login your username and password.
 
- - Remember me cookie** - Thanks to the authsome component, you can just check the remember me checkbox and you will log-in to your site immediately.
+ 3. Remember me cookie** - Thanks to the authsome component, you can just check the remember me checkbox and you will log-in to your site immediately.
 
- - Change password - Users can log-in to your site change your current password.
+ 4. Change password - Users can log-in to your site change your current password.
 
- - Forgot password - When your user forgot his password he can use this form to reset it.
+ 5. Forgot password - When your user forgot his password he can use this form to reset it.
 
 - User dashboard section. When a user logs in it redirects you to the dashboard.
 
@@ -48,17 +48,17 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 - Copy the spark_plug folder into the app/plugin/ directory.
 - Run all the sql files in the spark_plug/config/schema/ directory.
 - open your app/config/core.php and add the line below:
-	
+
 	`include_once(ROOT.'/app/plugins/spark_plug/config/config.php');`
 
 - open your app/config/routes.php
 
 	`include_once(ROOT.'/app/plugins/spark_plug/config/routes.php');`
-	
+
 - open the app/plugins/spark_plug/config/config.php and change according to your setup.
 
 - Go to the login page [http://localhost/mysite/users/login](http://localhost/mysite/users/login)
- - type in username: admin 
+ - type in username: admin
  - password: 1234
 
 - You should see the dashboard now with a logout link.
@@ -68,9 +68,9 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 - to override the plugin views such as the login and registration pages. Put the following in your app/view/ folder.
 
 	`plugins/spark_plug/users/login.ctp`
-	
+
 	`plugins/spark_plug/users/register.ctp`
-	
+
 ## Contributors
 
 [Aquive](http://github.com/Aquive)
