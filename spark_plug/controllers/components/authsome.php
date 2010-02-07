@@ -54,36 +54,7 @@ class AuthsomeComponent extends Object{
 		$user = $this->__getActiveUser();
 		
 		$userModel = $this->__getUserModel();
-
-		//todo: need to cache
-		$records = $userModel->query("SELECT * FROM user_group_permissions as UserGroupPermission WHERE user_group_id = '".$user['User']['user_group_id']."'");
-
-		foreach ($records as $record)
-		{
-			$permissions[] = $record['UserGroupPermission']['controller'].'/'.$record['UserGroupPermission']['action'];
-		}
-		
-		if (!in_array(ucwords($access), $permissions))
-		{
-			//check if permission is a wildcard
-			foreach ($permissions as $permission)
-			{
-				//must match Websites/* == Websites/settings
-				if (strpos($permission,'/*') !== false)
-				{
-					$accessController = explode('/',$access);
-					
-					if (rtrim($permission,'/*')==$accessController[0])
-					{
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-		
-		
-		return true;
+		return $userModel->UserGroup->isUserGroupAccess($user['User']['user_group_id'],$access);
 	}
 	public function get($field = null) {
 		$user = $this->__getActiveUser();

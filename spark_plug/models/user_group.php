@@ -5,13 +5,13 @@ class UserGroup extends SparkPlugAppModel
 	var $name = 'UserGroup';
 	var $hasMany = array('SparkPlug.User','SparkPlug.UserGroupPermission');
 
-	function isGuestAccess($access)
+	function isUserGroupAccess($userGroupID,$access)
 	{
 		if (empty($access) || $access=='/')
 			return true;
-		
-		$permissions = $this->getPermissions(3);
-		
+
+		$permissions = $this->getPermissions($userGroupID);
+
 		if (!in_array(ucwords($access), $permissions))
 		{
 			//check if permission is a wildcard
@@ -33,8 +33,14 @@ class UserGroup extends SparkPlugAppModel
 
 		return true;
 	}
+	function isGuestAccess($access)
+	{
+		return $this->isUserGroupAccess(3, $access);
+	}
 	function getPermissions($userGroupID=3)
 	{
+		//todo: need to file or memory cache beacuse this is going to get executed every page refresh.
+
 		//get public controller actions
 		$permissions[] = '/'; 
 		
