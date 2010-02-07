@@ -46,6 +46,13 @@ class UserGroupPermissionFixture extends CakeTestFixture
 			'controller'=>'Pages',
 			'action'=>'*',
 			'allowed'=>1
+		),
+		array(
+			'id'=>7,
+			'user_group_id'=>2,
+			'controller'=>'Pages',
+			'action'=>'*',
+			'allowed'=>1
 		)
 	);
 }

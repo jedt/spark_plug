@@ -12,7 +12,14 @@ class UserGroupTest extends CakeTestCase
 	{
 		$this->UserGroup =& ClassRegistry::init('UserGroup');
 	}
-
+	function testUserGroupNoAccess()
+	{
+		$this->assertFalse($this->UserGroup->isGuestAccess('Websites/add'));
+	}
+	function testUserGroupWildCardAccess()
+	{
+		$this->assertTrue($this->UserGroup->isUserGroupAccess(2,'Pages/add'));
+	}
 	function testWildCardGuestAccess()
 	{
 		$this->assertTrue($this->UserGroup->isGuestAccess('Pages/add'));
@@ -34,7 +41,8 @@ class UserGroupTest extends CakeTestCase
 		$this->assertTrue($userPermissions);
 		$this->assertEqual($userPermissions[0],'/');
 		$this->assertEqual($userPermissions[1],'Websites/*');
-		$this->assertEqual($userPermissions[2],'Posts/*');
+		$this->assertEqual($userPermissions[2],'Pages/*');
+		$this->assertEqual($userPermissions[3],'Posts/*');
 	}
 	function testPermissionWildCardAddSingleAction()
 	{
@@ -53,7 +61,8 @@ class UserGroupTest extends CakeTestCase
 		$this->assertTrue($userPermissions);
 		$this->assertEqual($userPermissions[0],'/');
 		$this->assertEqual($userPermissions[1],'Websites/*');
-		$this->assertEqual($userPermissions[2],'Posts/add');
+		$this->assertEqual($userPermissions[2],'Pages/*');
+		$this->assertEqual($userPermissions[3],'Posts/add');
 	}
 	function testPermissionWildCardDefault()
 	{
