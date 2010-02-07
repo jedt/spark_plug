@@ -12,6 +12,11 @@ class UserGroupTest extends CakeTestCase
 	{
 		$this->UserGroup =& ClassRegistry::init('UserGroup');
 	}
+
+	function testWildCardGuestAccess()
+	{
+		$this->assertTrue($this->UserGroup->isGuestAccess('Pages/add'));
+	}
 	function testPermissionWildCardAddWildcard()
 	{
 		$newPermission = array('UserGroupPermission'=>

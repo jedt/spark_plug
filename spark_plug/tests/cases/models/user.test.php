@@ -12,21 +12,60 @@ class UserTest extends CakeTestCase
 	{
 		$this->User =& ClassRegistry::init('User');
 	}
-
+	function testChangePassword()
+	{
+		$data['User']['id'] = '1';
+		$data['User']['password'] = '1234';
+		$data['User']['confirm_password'] = '1234';
+		$result = $this->User->changePassword($data);
+		$this->assertTrue($result);
+	}
+	function testChangePasswordError()
+	{
+		$data['User']['id'] = '1';
+		$data['User']['password'] = '1234';
+		$data['User']['confirm_password'] = '1234567';
+		$result = $this->User->changePassword($data);
+		$this->assertFalse($result);
+	}
 	function testChangePasswordAndLogin()
 	{
-
+		$data['User']['id'] = '1';
+		$data['User']['password'] = 'newpassword1234';
+		$data['User']['confirm_password'] = 'newpassword1234';
+		$result = $this->User->changePassword($data);
+		$this->assertTrue($result);
+		$credentials['username'] = 'sampleuser121';
+		$credentials['password'] = 'newpassword1234';
+		$user = $this->User->authsomeLogin('credentials',$credentials);
+		$this->assertTrue($user);
+	}
+	function testForgotPassword()
+	{
+		$result = $this->User->forgotPassword('fake@mysite.com');
+		$this->assertTrue($result);
+		$this->assertEqual($this->User->lastResetPassword['id'],1);
+		$this->assertEqual($this->User->lastResetPassword['password'],'e10adc3949ba59abbe56e057f20f883e');
 	}
 	function testForgotPasswordAndLogin()
 	{
-		
-	}
+		$result = $this->User->forgotPassword('fake@mysite.com');
+		$this->assertTrue($result);
+		$this->assertEqual($this->User->lastResetPassword['id'],1);
+		$this->assertEqual($this->User->lastResetPassword['password'],'e10adc3949ba59abbe56e057f20f883e');
 
+		$credentials['username'] = 'sampleuser121';
+		$credentials['password'] = '123456';
+		$user = $this->User->authsomeLogin('credentials',$credentials);
+		$this->assertTrue($user);
+	}
+	
 	function testActivateAccountAndLogin()
 	{
 		$data['User']['id'] = null;
 		$data['User']['username'] = 'johnsmith1234';
 		$data['User']['password'] = '123456';
+		$data['User']['confirm_password'] = '123456';
 		$data['User']['email'] = 'jed@bodegasale.com';
 		$data['User']['first_name'] = 'John';
 		$data['User']['last_name'] = 'Smith';
@@ -54,6 +93,7 @@ class UserTest extends CakeTestCase
 		$data['User']['id'] = null;
 		$data['User']['username'] = 'johnsmith1234';
 		$data['User']['password'] = '123456';
+		$data['User']['confirm_password'] = '123456';
 		$data['User']['email'] = 'jed@bodegasale.com';
 		$data['User']['first_name'] = 'John';
 		$data['User']['last_name'] = 'Smith';
@@ -175,14 +215,6 @@ class UserTest extends CakeTestCase
 		$result = $this->User->save($data);
 		$this->assertFalse($result);
 	}
-
-	function testForgotPassword()
-	{
-		$result = $this->User->forgotPassword('fake@mysite.com');
-		$this->assertTrue($result);
-		$this->assertEqual($this->User->lastResetPassword['id'],1);
-		$this->assertEqual($this->User->lastResetPassword['password'],'e10adc3949ba59abbe56e057f20f883e');
-	}
 	function testActivatePasswordErrorConfirm()
 	{
 		$data['User']['ident'] = '1';
@@ -201,22 +233,6 @@ class UserTest extends CakeTestCase
 		$data['User']['password'] = '1234';
 		$data['User']['confirm_password'] = '1234';
 		$result = $this->User->activatePassword($data);
-		$this->assertFalse($result);
-	}
-	function testChangePassword()
-	{
-		$data['User']['id'] = '1';
-		$data['User']['password'] = '1234';
-		$data['User']['confirm_password'] = '1234';
-		$result = $this->User->changePassword($data);
-		$this->assertTrue($result);
-	}
-	function testChangePasswordError()
-	{
-		$data['User']['id'] = '1';
-		$data['User']['password'] = '1234';
-		$data['User']['confirm_password'] = '1234567';
-		$result = $this->User->changePassword($data);
 		$this->assertFalse($result);
 	}
 }
