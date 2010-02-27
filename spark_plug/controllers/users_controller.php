@@ -6,12 +6,26 @@ class UsersController extends SparkPlugAppController {
 	var $layout_settings = array("columns"=>"1");
 	var $uses = array('SparkPlug.User');
 
+    function index()
+    {
+        $this->layout = Configure::read('dashboard_layout');
+        $users = $this->paginate('User');
+        $this->set('users',$users);
+    }
+
+    function edit($id=null)
+    {
+        $this->layout = Configure::read('dashboard_layout');
+        $userGroups = $this->User->UserGroup->find('list');
+        $this->set('userGroups',$userGroups);
+        $this->data = $this->User->read(null,$id);
+    }
+    
 	function logout()
 	{
 		$this->Authsome->logout();
 		$this->Session->setFlash('You are now logged out.');
 		$this->redirect('/users/login');
-
 	}
 	function dashboard()
 	{
@@ -22,7 +36,7 @@ class UsersController extends SparkPlugAppController {
 		$user = $this->Authsome->get();
 		if ($user)
 		{
-			$this->redirect("/dashboard");
+			$this->redirect("/users/dashboard");
 		}
 		else
 		{
@@ -77,7 +91,7 @@ class UsersController extends SparkPlugAppController {
 		{
 			if ($this->User->changePassword($this->data))
 			{
-				$this->flash('Password has changed.',Configure::read('httpRootUrl').'/dashboard');
+				$this->flash('Password has changed.',Configure::read('httpRootUrl').'/users/dashboard');
 			}
 		}
 		else
@@ -87,7 +101,16 @@ class UsersController extends SparkPlugAppController {
 			$this->data['User']['password']='';
 		}
 	}
-
+    function login_as_user($id)
+    {
+        $user = $this->User->read(null,$id);
+        $this->Session->write("User",$user);
+        $this->Session->write("User.id",$user["User"]["id"]);
+        $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
+        $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
+        $this->Session->write('Company.id',$user['Company']['id']);
+        $this->redirect('/users/dashboard');
+    }
 	function login()
 	{
 		if (isset($_GET["ident"]))
@@ -124,7 +147,7 @@ class UsersController extends SparkPlugAppController {
 			$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 			$this->Session->write('Company.id',$user['Company']['id']);
 
-			$this->redirect('/dashboard');
+			$this->redirect('/users/dashboard');
 		}
     }
 

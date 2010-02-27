@@ -1,6 +1,6 @@
 <?php
 class SparkPlugAppModel extends AppModel
-{
+{   
     function alphaNumericDashUnderscore($check)
 	{
       // $data array is passed using the form field name as the key

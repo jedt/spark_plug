@@ -6,7 +6,8 @@ class User extends SparkPlugAppModel {
 	var $actsAs = array('SparkPlug.Membership'=>array('option1'=>'value'));
 	var $belongsTo = array('SparkPlug.UserGroup');
 
-	var $hasOne = array('SparkPlug.Company','SparkPlug.LoginToken');
+	var $hasOne = array('SparkPlug.Company');
+    var $hasMany = array('SparkPlug.LoginToken');
 
 	var $validate = array(
 				"username" => array(

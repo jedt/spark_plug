@@ -52,10 +52,10 @@ class AuthsomeComponent extends Object{
 	public function check($access=null)
 	{
 		$user = $this->__getActiveUser();
-		
-		$userModel = $this->__getUserModel();
-		return $userModel->UserGroup->isUserGroupAccess($user['User']['user_group_id'],$access);
-	}
+
+            $userModel = $this->__getUserModel();
+            return $userModel->UserGroup->isUserGroupAccess($user['User']['user_group_id'],$access);
+    }
 	public function get($field = null) {
 		$user = $this->__getActiveUser();
 
