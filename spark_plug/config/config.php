@@ -27,13 +27,13 @@ function SparkPlugIt(&$controller)
     {
         $actionUrl = $controller->params['url']['url'];
 
-        if (isset($controller->params['slug']))
-            $website = $controller->Website->find('Website.subdomain = "'.$controller->params['slug'].'"');
-        else
-            $website = null;
-
-        if (!$website)
-        {
+//        if (isset($controller->params['slug']))
+//            $website = $controller->Website->find('Website.subdomain = "'.$controller->params['slug'].'"');
+//        else
+//            $website = null;
+//
+//        if (!$website)
+//        {
             $user = $controller->Authsome->get();
             if (!$user)
             {
@@ -56,7 +56,7 @@ function SparkPlugIt(&$controller)
                     $controller->redirect('/users/dashboard');
                 }
             }
-        }
+//        }
     }
 }
 ?>
