@@ -4,7 +4,9 @@ Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project.
 
 Sample Ideas:
 
-- Forum, Q&A site, Dating site, Review site, Blog/Microblog Twitter clone.
+- Forum, Q&A site, Dating site, Ecommerce Review site, Blog/Microblog Twitter clone etc..
+
+Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for a full guide.
 
 ## Features
 
