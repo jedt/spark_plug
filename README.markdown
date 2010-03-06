@@ -6,7 +6,7 @@ Sample Ideas:
 
 - Forum, Q&A site, Dating site, Ecommerce, Review site, Blog/Microblog Twitter clone etc..
 
-Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for a full guide and [this page](http://wiki.github.com/jedt/spark_plug/) for support and bug reports.
+Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for a full guide and [this page](http://bodegasale.com/jed/?p=231) for support and bug reports.
 
 ## Features version 1.0
 
