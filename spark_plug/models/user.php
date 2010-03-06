@@ -94,6 +94,7 @@ class User extends SparkPlugAppModel {
 				$conditions = array(
 					'User.username' => $credentials['username'],
 					'User.password' => $password,
+                    'User.active' => '1'
 				);
 				break;
 			case 'cookie':
