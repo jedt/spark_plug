@@ -20,6 +20,14 @@ class UsersController extends SparkPlugAppController {
         $this->set('userGroups',$userGroups);
         $this->data = $this->User->read(null,$id);
     }
+
+    function delete($id)
+    {
+        $this->layout = Configure::read('dashboard_layout');
+        $this->User->delete($id);
+        $this->Session->setFlash('User was deleted.');
+        $this->redirect('index');
+    }
     
 	function logout()
 	{
