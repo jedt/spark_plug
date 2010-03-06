@@ -1,14 +1,14 @@
 ## Description
 
-Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project. It uses the Authsome component and uses a very simple access control routine.
+Spark Plug Cakephp plugin is a "pulled-out" script from the flashub.com project. It uses the Authsome component and uses a very simple access control routine. [Forking](http://help.github.com/forking/) of this project is very much welcome.
 
 Sample Ideas:
 
-- Forum, Q&A site, Dating site, Ecommerce Review site, Blog/Microblog Twitter clone etc..
+- Forum, Q&A site, Dating site, Ecommerce, Review site, Blog/Microblog Twitter clone etc..
 
-Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for a full guide.
+Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for a full guide and [this page](http://wiki.github.com/jedt/spark_plug/) for support and bug reports.
 
-## Features
+## Features version 1.0
 
 - Easy to install. This is totally subjective but is one of the main features.
 
@@ -18,7 +18,7 @@ Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for 
 
  2. Login Form - The page to login your username and password.
 
- 3. Remember me cookie** - Thanks to the authsome component, you can just check the remember me checkbox and you will log-in to your site immediately.
+ 3. Remember me cookie - Thanks to the authsome component, you can just check the remember me checkbox and you will log-in to your site immediately.
 
  4. Change password - Users can log-in to your site change your current password.
 
@@ -27,6 +27,8 @@ Please visit the [Spark Plug Wiki](http://wiki.github.com/jedt/spark_plug/) for 
 - User dashboard section. When a user logs in it redirects you to the dashboard.
 
 - Simple ACL. Your site's user section is protected. Visitors must login to get access to the dashboard.
+
+- Admin User CRUD - As admin you can edit/delete users.
 
 ## Scope/Limitation
 
@@ -37,13 +39,6 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 - PHP 5.2
 - Mysql
 - Cakephp 1.3
-
-## Todo
-
-- Admin's Permission CRUD
-- Admin's User CRUD, reset password.
-- Open ID Registration.
-- Captcha on Registration.
 
 ## Installation
 
@@ -72,6 +67,30 @@ This plugin is only used for User Management. It has nothing in the dashboard bu
 	`plugins/spark_plug/users/login.ctp`
 
 	`plugins/spark_plug/users/register.ctp`
+
+## License
+
+The MIT License
+
+Copyright (c) 2010 [Spark Plug Cakephp plugin](http://github.com/jedt/spark_plug)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 ## Contributors
 
