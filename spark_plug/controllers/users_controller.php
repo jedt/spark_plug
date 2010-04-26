@@ -60,6 +60,10 @@ class UsersController extends SparkPlugAppController {
 		}
 		else
 		{
+			if(!Configure::read('SparkPlug.open_registration')) {
+				$this->Session->setFlash('Please contact an administrator to setup an account');
+				$this->redirect('/users/login');
+			}
 			$this->layout = Configure::read('front_end_layout');
 
 			if ($this->data)

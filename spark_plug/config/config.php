@@ -16,6 +16,8 @@ Configure::write('logged-in-menu','logged_in_menu');
 Configure::write('front_end_layout','default');
 Configure::write('dashboard_layout','default');
 
+Configure::write('SparkPlug.open_registration', true);
+
 function SparkPlugIt(&$controller)
 {
     $pageRedirect = $controller->Session->read('permission_error_redirect');
