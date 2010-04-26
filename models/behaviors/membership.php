@@ -95,8 +95,8 @@ class MembershipBehavior extends ModelBehavior
 			$mail = new phpmailer();
 			$mail->AddAddress($user['User']['email'],$user['User']['username']);
 			
-			$mail->FromName = 'Site Administrator';
-			$mail->From = 'admin@bodegasale.com';
+			$mail->FromName = Configure::read('SparkPlug.administrator.from_name');
+			$mail->From = Configure::read('SparkPlug.administrator.email');
 			$mail->Subject = 'Password Reset';
 
 			$password = $user['User']['password'];
