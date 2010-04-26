@@ -49,7 +49,7 @@ class User extends SparkPlugAppModel {
 			);
 
 	function afterSave($created)
-	{
+	{		
 		if ($created)
 		{
 			$companyData['Company']['id'] = null;
@@ -74,7 +74,7 @@ class User extends SparkPlugAppModel {
 		if (!isset($data['User']['confirm_password']))
 		{
 			if (isset($data['User']['password'])) {
-				$data['User']['password'] = md5($data['User']['password']);
+				$data['User']['password'] = Authsome::hash($data['User']['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'));
 				return $data;
 			}
 		}
@@ -88,7 +88,7 @@ class User extends SparkPlugAppModel {
 				// have a guest account, just return an empty array
 				return array();
 			case 'credentials':
-				$password = md5($credentials['password']);
+				$password = Authsome::hash($credentials['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'));
 
 				// This is the logic for validating the login
 				$conditions = array(
@@ -127,7 +127,7 @@ class User extends SparkPlugAppModel {
 			default:
 				return null;
 		}
-
+		
         return $this->find('first', compact('conditions'));
     }
 
