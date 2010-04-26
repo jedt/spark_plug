@@ -17,6 +17,8 @@ Configure::write('front_end_layout','default');
 Configure::write('dashboard_layout','default');
 
 Configure::write('SparkPlug.open_registration', true);
+Configure::write('SparkPlug.administrator.from_name', 'Administrator');
+Configure::write('SparkPlug.administrator.email', 'noreply@tdservers.com');
 
 function SparkPlugIt(&$controller)
 {

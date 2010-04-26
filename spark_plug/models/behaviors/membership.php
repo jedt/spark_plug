@@ -41,8 +41,8 @@ class MembershipBehavior extends ModelBehavior
 		
 		$mail->Body = $message;
 
-		$mail->FromName = 'Site Administrator';
-		$mail->From = 'admin@bodegasale.com';
+		$mail->FromName = Configure::read('SparkPlug.administrator.from_name');
+		$mail->From = Configure::read('SparkPlug.administrator.email');
 
 		$Model->lastRegisteredUser = array('id'=>$id,'activate_key'=>$activate_key);
 
