@@ -181,7 +181,7 @@ class AuthsomeComponent extends Object{
 		$user = $this->login('cookie', compact('token', 'duration'));
 
 		// Delete the cookie once its been used
-		$this->Cookie->delete($this->settings['cookieKey']);
+		$this->Cookie->del($this->settings['cookieKey']);
 
 		if (!$user) {
 			return;
