@@ -19,7 +19,7 @@ class MembershipBehavior extends ModelBehavior
 	function getActivationKey(&$Model,$password)
 	{
 		$salt = Configure::read ( "Security.salt" );
-		return md5(md5($password).$salt);
+		return md5(Authsome::hash($password, Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt')).$salt);
 	}
 	function sendRegistrationEmail(&$Model)
 	{
@@ -31,7 +31,7 @@ class MembershipBehavior extends ModelBehavior
 		$activate_key = $this->getActivationKey($Model,$Model->data['User']['password']);
 
 		$id = $Model->getLastInsertID();
-		$Model->updateAll(array('password'=>"'".md5($Model->data['User']['password'])."'"),'User.id = '.$id);
+		$Model->updateAll(array('password'=>"'".Authsome::hash($Model->data['User']['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'))."'"),'User.id = '.$id);
 
 		$id = $Model->getLastInsertID();
 		
@@ -133,7 +133,7 @@ Site Admin";
 		$valid = $Model->validates();
 		if ($valid)
 		{
-			$Model->updateAll(array('password'=>"'".md5($data['User']['password'])."'"),"User.id = '".$data['User']['id']."'");
+			$Model->updateAll(array('password'=>"'".Authsome::hash($data['User']['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'))."'"),"User.id = '".$data['User']['id']."'");
 			return true;
 		}
 		else
@@ -156,7 +156,7 @@ Site Admin";
 				$user['User']['confirm_password'] = $data['User']['confirm_password'];
 				if ($Model->save($user))
 				{
-					$Model->updateAll(array('password'=>"'".md5($user['User']['password'])."'"),"User.id = '".$data['User']['ident']."'");
+					$Model->updateAll(array('password'=>"'".Authsome::hash($user['User']['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'))."'"),"User.id = '".$data['User']['ident']."'");
 					return true;
 				}
 				else
