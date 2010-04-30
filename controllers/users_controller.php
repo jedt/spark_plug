@@ -1,4 +1,5 @@
 <?php
+
 class UsersController extends SparkPlugAppController {
 
 	var $name = 'Users';
@@ -56,7 +57,7 @@ class UsersController extends SparkPlugAppController {
 		$user = $this->Authsome->get();
 		if ($user)
 		{
-			$this->redirect("/users/dashboard");
+			$this->redirect(Configure::read('SparkPlug.loginRedirect'));
 		}
 		else
 		{
@@ -70,6 +71,10 @@ class UsersController extends SparkPlugAppController {
 			{
 				if ($this->User->save($this->data))
 				{
+					$registerRedirect = Configure::read('SparkPlug.registerRedirect');
+					if(!empty($registerRedirect)) {
+						$this->redirect($registerRedirect);
+					}
 					$this->flash("Thank you for joining. Please check your email for instructions.","login");
 				} else {
 					$this->data['User']['password'] = null;
@@ -171,7 +176,7 @@ class UsersController extends SparkPlugAppController {
 			$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 			$this->Session->write('Company.id',$user['Company']['id']);
 
-			$this->redirect('/users/dashboard');
+			$this->redirect(Configure::read('SparkPlug.loginRedirect'));
 		}
     }
 
@@ -194,7 +199,7 @@ class UsersController extends SparkPlugAppController {
 	{
 
 		parent::beforeFilter();
-
+		return;
 		$pageRedirect = $this->Session->read('permission_error_redirect');
 		$this->Session->delete('permission_error_redirect');
 
@@ -208,7 +213,7 @@ class UsersController extends SparkPlugAppController {
 				if (!in_array(ucwords($actionUrl), $permissions))
 				{
 					$this->Session->write('permission_error_redirect','/users/login');
-					$this->Session->setFlash('Sorry, You don\'t have permission to view this page.');
+					$this->Session->setFlash('Please login to view this page.');
 					$this->redirect('/users/login');
 				}
 			}
