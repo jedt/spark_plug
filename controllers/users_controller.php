@@ -71,6 +71,16 @@ class UsersController extends SparkPlugAppController {
 			{
 				if ($this->User->save($this->data))
 				{
+					$registerAutoLogin = Configure::read('SparkPlug.registerAutoLogin');
+					if($registerAutoLogin) {
+						$user = $this->User->read(null,$this->User->id);
+						$this->Session->write("User",$user);
+				        $this->Session->write("User.id",$user["User"]["id"]);
+				        $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
+				        $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
+				        $this->Session->write('Company.id',$user['Company']['id']);
+					}
+			        
 					$registerRedirect = Configure::read('SparkPlug.registerRedirect');
 					if(!empty($registerRedirect)) {
 						$this->redirect($registerRedirect);
