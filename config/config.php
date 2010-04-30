@@ -17,6 +17,9 @@ Configure::write('front_end_layout','default');
 Configure::write('dashboard_layout','default');
 
 Configure::write('SparkPlug.open_registration', true);
+Configure::write('SparkPlug.register_defaults.optin', false);
+Configure::write('SparkPlug.register_defaults.agreement', false);
+
 Configure::write('SparkPlug.loginRedirect', '/users/dashboard');
 Configure::write('SparkPlug.registerRedirect', false);
 Configure::write('SparkPlug.administrator.from_name', 'Administrator');

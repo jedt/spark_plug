@@ -80,6 +80,9 @@ class UsersController extends SparkPlugAppController {
 					$this->data['User']['password'] = null;
 					$this->data['User']['confirm_password'] = null;
 				}
+			} else {				
+				$this->data['User']['optin'] = Configure::read('SparkPlug.register_defaults.optin');
+				$this->data['User']['agreement'] = Configure::read('SparkPlug.register_defaults.agreement');
 			}
 		}
 	}
