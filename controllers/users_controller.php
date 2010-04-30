@@ -135,6 +135,7 @@ class UsersController extends SparkPlugAppController {
 	}
     function login_as_user($id)
     {
+		if(Configure::read('SparkPlug.allow.login_as_user')==false) return; 
         $user = $this->User->read(null,$id);
         $this->Session->write("User",$user);
         $this->Session->write("User.id",$user["User"]["id"]);
