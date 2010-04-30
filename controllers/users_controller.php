@@ -191,7 +191,7 @@ class UsersController extends SparkPlugAppController {
 			$email = $this->data["User"]["email"];
 			if ($this->User->forgotPassword($email))
 			{
-				$this->flash("Please check your email.","login",'success');
+				$this->flash("Please check your email for instructions on resetting your password.","login",'success');
 			} else {
 				$this->flash("Your email is invalid or not registered.","login",'error');
 			}
