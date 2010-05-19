@@ -136,4 +136,5 @@ INSERT INTO `user_group_permissions` (`id`, `user_group_id`, `controller`, `acti
 (5, 3, 'Users', 'activate_password', 1),
 (6, 2, 'Users', 'dashboard', 1),
 (7, 1, 'Users', '*', 1),
-(8, 3, 'Users', 'forgotPassword', 1);
+(8, 3, 'Users', 'forgotPassword', 1),
+(9, 1, 'UserGroupPermissions', '*', 1);
