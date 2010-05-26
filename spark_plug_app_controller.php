@@ -6,6 +6,7 @@ class SparkPlugAppController extends AppController
             'model' => 'User'
         )
     );
-
+    
+    var $helpers = array('SparkPlug.Trans');
 }
 ?>

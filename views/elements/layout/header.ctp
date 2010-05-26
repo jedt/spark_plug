@@ -2,6 +2,7 @@
 	<div id="topnav">
 
 		<span>
+		
 			<a href="<?php echo $html->url("/users/login") ?>">Login</a> | <a href="<?php echo $html->url("/users/register") ?>">Register</a> | <a href="#">Contact</a>
 		</span>
 	</div>
