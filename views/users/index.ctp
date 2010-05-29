@@ -1,6 +1,6 @@
-<?php echo $html->link('Back to dashboard','/users/dashboard'); ?>
+<?php echo $html->link($trans->__('Back to dashboard'),'/users/dashboard'); ?>
 
-<h2>Users</h2>
+<h2><?php echo $trans->__('Users'); ?> </h2>
 <div class="table_wrap browse">
 <table class="full" cellspacing="1" cellpadding="4" border="0" bgcolor="#dddddd" width="100%">
 <tr>
@@ -12,7 +12,7 @@
     <th><?php echo $paginator->sort('email');?></th>
     <th><?php echo $paginator->sort('active');?></th>
     <th><?php echo $paginator->sort('created');?></th>
-	<th class="actions"><?php __('Actions');?></th>
+	<th class="actions"><?php $trans->__('Actions');?></th>
 </tr>
 <?php
 $i = 0;
@@ -48,8 +48,8 @@ foreach ($users as $user):
 			<?php echo $user['User']['created']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $user['User']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
+			<?php echo $html->link($trans->__('Edit', true), array('action'=>'edit', $user['User']['id'])); ?>
+			<?php echo $html->link($trans->__('Delete', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -57,7 +57,7 @@ foreach ($users as $user):
 </div>
 
 <div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+	<?php echo $paginator->prev('<< '.$trans->__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
+	<?php echo $paginator->next($trans->__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>

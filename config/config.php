@@ -17,6 +17,7 @@ Configure::write('front_end_layout','default');
 Configure::write('dashboard_layout','default');
 
 Configure::write('SparkPlug.open_registration', true);
+Configure::write('SparkPlug.default_groupid_for_registration', 2); // id of the group used to register new users via users/register
 Configure::write('SparkPlug.register_defaults.optin', false);
 Configure::write('SparkPlug.register_defaults.agreement', false);
 
