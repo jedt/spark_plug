@@ -2,19 +2,20 @@
 	<div id="topnav">
 
 		<span>
-		
-			<a href="<?php echo $html->url("/users/login") ?>">Login</a> | <a href="<?php echo $html->url("/users/register") ?>">Register</a> | <a href="#">Contact</a>
+		<?php echo $html->link($trans->__('Login'), '/users/login'); ?> | 
+		<?php echo $html->link($trans->__('Register'), '/users/register'); ?> | 
 		</span>
 	</div>
-	<h1><?php echo PROJECT_NAME ?></h1>
-	<span></span></div>
+	<h1><?php echo $trans->__('User Management'); ?></h1>
+	</div>
 <!-- begin: main navigation #nav -->
 <div id="nav"> <a id="navigation" name="navigation"></a>
 	<!-- skiplink anchor: navigation -->
 	<div id="nav_main">
 		<ul>
-			<li id="current"><a href="<?php echo $html->url("/") ?>">Home</a></li>
-			<li><a href="#">Button 2</a></li>
+			<li id="current">
+				<?php echo $html->link($trans->__('Home'), '/'); ?> | 
+			</li>
 		</ul>
 	</div>
 </div>

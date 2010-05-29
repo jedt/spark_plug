@@ -1,4 +1,4 @@
-<?=$html->link('Back to dashboard','/users/dashboard')?> | <?php echo $html->link(__('New User Group Permission', true), array('action'=>'add')); ?>
+<?php echo $html->link('Back to dashboard','/users/dashboard'); ?> | <?php echo $html->link(__('New User Group Permission', true), array('action'=>'add')); ?>
 
 <h2>User Group Permissions</h2>
 <div class="table_wrap browse">

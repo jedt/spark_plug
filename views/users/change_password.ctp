@@ -1,7 +1,7 @@
 <h2>Change Password</h2>
-<?=$form->create("User",array("action"=>"change_password")) ?>
-<?=$form->input('password')?>
-<?=$form->input('confirm_password',array('type'=>'password'))?>
-<?=$form->hidden('id')?>
-<?=$form->submit()?>
-<?=$form->end() ?>
+<?php echo $form->create("User",array("action"=>"change_password")) ?>
+<?php echo $form->input('password'); ?>
+<?php echo $form->input('confirm_password',array('type'=>'password')); ?>
+<?php echo $form->hidden('id'); ?>
+<?php echo $form->submit(); ?>
+<?php echo $form->end() ?>
