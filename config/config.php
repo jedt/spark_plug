@@ -32,7 +32,7 @@ Configure::read('SparkPlug.allow.login_as_user', false);
 // creating a specific cache config for rules
 Cache::config('SparkPlug', array(  
     'engine' => 'File',  
-    'duration'=> '+24 hours',  
+    'duration'=> '+3 months',  
     'path' => CACHE,  
     'prefix' => 'SparkPlug_'
 ));
