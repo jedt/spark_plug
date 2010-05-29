@@ -1,15 +1,15 @@
-<? if ($auth->user()): ?>
+<?php if ($auth->user()): ?>
 	<div id="sf-menu-containter">
 		<div class="page_margins">
 			<ul class="sf-menu">
 				<li>
-					<?=$html->link("Home","/dashboard")?>
+					<?php echo $html->link($trans->__('Home'), "/dashboard"); ?>
 					<ul>
 						<li>
-							<li><?=$html->link("Change Password", "/users/change_password") ?></li>
+							<li><?php echo $html->link($trans->__("Change Password"), "/users/change_password") ?></li>
 						</li>
 						<li>
-							<a href="http://<?=Configure::read('rootURL')?>/users/logout">Logout</a>
+							<?php echo $html->link($trans->__("Disconnect"), "/users/logout") ?>
 						</li>
 					</ul>
 				</li>

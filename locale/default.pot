@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2010-05-26 22:05+0100\n"
+"POT-Creation-Date: 2010-05-29 20:02+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -13,6 +13,32 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: \views\elements\layout\header.ctp:5
+msgid "Login"
+msgstr ""
+
+#: \views\elements\layout\header.ctp:6
+msgid "Register"
+msgstr ""
+
+#: \views\elements\layout\header.ctp:9
+msgid "User Management"
+msgstr ""
+
+#: \views\elements\layout\header.ctp:17
+#: \views\elements\layout\logged_in_menu.default.ctp:6
+msgid "Home"
+msgstr ""
+
+#: \views\elements\layout\logged_in_menu.default.ctp:9
+#: \views\users\dashboard.ctp:11
+msgid "Change Password"
+msgstr ""
+
+#: \views\elements\layout\logged_in_menu.default.ctp:12
+msgid "Disconnect"
+msgstr ""
 
 #: \views\user_group_permissions\index.ctp:1
 msgid "New User Group Permission"
@@ -64,11 +90,39 @@ msgstr ""
 msgid "Manage Permissions"
 msgstr ""
 
-#: \views\users\dashboard.ctp:11
-msgid "Change Password"
-msgstr ""
-
 #: \views\users\dashboard.ctp:12
 msgid "Logout"
+msgstr ""
+
+#: \views\users\login.ctp:1
+msgid "Login your username and password"
+msgstr ""
+
+#: \views\users\login.ctp:3
+msgid "username"
+msgstr ""
+
+#: \views\users\login.ctp:4
+msgid "password"
+msgstr ""
+
+#: \views\users\login.ctp:5
+msgid "Remember me for 2 weeks"
+msgstr ""
+
+#: \views\users\login.ctp:6
+msgid "Submit"
+msgstr ""
+
+#: \views\users\login.ctp:9
+msgid "Not registered yet?"
+msgstr ""
+
+#: \views\users\login.ctp:9
+msgid "Click Here"
+msgstr ""
+
+#: \views\users\login.ctp:11
+msgid "Forgot your password?"
 msgstr ""
 

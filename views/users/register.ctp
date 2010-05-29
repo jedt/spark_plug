@@ -31,6 +31,6 @@
 </div>
 <div class="rightcol">
 	<h2>Existing Users</h2>
-	<?=$html->link('Login here','/users/login')?>
+	<?php echo $html->link('Login here','/users/login'); ?>
 </div>
 <div style="clear:both"></div>

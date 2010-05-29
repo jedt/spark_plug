@@ -1,4 +1,4 @@
-<?=$html->link('Back to dashboard','/users/dashboard')?>
+<?php echo $html->link('Back to dashboard','/users/dashboard'); ?>
 
 <h2>Users</h2>
 <div class="table_wrap browse">

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2010-05-26 22:05+0100\n"
-"PO-Revision-Date: 2010-05-26 22:07-0000\n"
+"POT-Creation-Date: 2010-05-29 20:02+0100\n"
+"PO-Revision-Date: 2010-05-29 20:02-0000\n"
 "Last-Translator: Steinkel <steinkel@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
+
+#: \views\elements\layout\header.ctp:5
+#, fuzzy
+msgid "Login"
+msgstr "Nombre de usuario"
+
+#: \views\elements\layout\header.ctp:6
+#, fuzzy
+msgid "Register"
+msgstr "Registrarse"
+
+#: \views\elements\layout\header.ctp:9
+msgid "User Management"
+msgstr "Administrar usuarios"
+
+#: \views\elements\layout\header.ctp:17
+#: \views\elements\layout\logged_in_menu.default.ctp:6
+#, fuzzy
+msgid "Home"
+msgstr "Inicio"
+
+#: \views\elements\layout\logged_in_menu.default.ctp:9
+#: \views\users\dashboard.ctp:11
+msgid "Change Password"
+msgstr "Cambiar contraseña"
+
+#: \views\elements\layout\logged_in_menu.default.ctp:12
+msgid "Disconnect"
+msgstr "Cerrar sesión"
 
 #: \views\user_group_permissions\index.ctp:1
 msgid "New User Group Permission"
@@ -64,11 +93,42 @@ msgstr "Administrar Usuarios"
 msgid "Manage Permissions"
 msgstr "Administrar Permisos"
 
-#: \views\users\dashboard.ctp:11
-msgid "Change Password"
-msgstr "Cambiar contraseña"
-
 #: \views\users\dashboard.ctp:12
 msgid "Logout"
 msgstr "Desconectar"
+
+#: \views\users\login.ctp:1
+msgid "Login your username and password"
+msgstr "Introduzca su nombre de usuario y contraseña"
+
+#: \views\users\login.ctp:3
+#, fuzzy
+msgid "username"
+msgstr "Nombre de usuario"
+
+#: \views\users\login.ctp:4
+#, fuzzy
+msgid "password"
+msgstr "Contraseña"
+
+#: \views\users\login.ctp:5
+msgid "Remember me for 2 weeks"
+msgstr "Recordar mi contraseña durante 2 semanas"
+
+#: \views\users\login.ctp:6
+#, fuzzy
+msgid "Submit"
+msgstr "Enviar"
+
+#: \views\users\login.ctp:9
+msgid "Not registered yet?"
+msgstr "¿ No se ha registrado todavía ?"
+
+#: \views\users\login.ctp:9
+msgid "Click Here"
+msgstr "Haga click aquí"
+
+#: \views\users\login.ctp:11
+msgid "Forgot your password?"
+msgstr "¿ Olvidaste tu contraseña ?"
 
