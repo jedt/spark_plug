@@ -10,10 +10,10 @@ class MembershipBehavior extends ModelBehavior
 		{
 			$this->settings[$Model->alias] = array(
 				'option1_key' => 'option1_default_value'
-			);
+				);
 		}
 		$this->settings[$Model->alias] = array_merge(
-			$this->settings[$Model->alias], (array)$settings);
+		$this->settings[$Model->alias], (array)$settings);
 	}
 
 	function getActivationKey(&$Model,$password)
@@ -27,18 +27,18 @@ class MembershipBehavior extends ModelBehavior
 		$mail->AddAddress($Model->data['User']['email'],$Model->data['User']['username']);
 		$mail->Subject = $Model->getEmailSubjectNew();
 		$message = $Model->getEmailBodyNew();
-		
+
 		$activate_key = $this->getActivationKey($Model,$Model->data['User']['password']);
 
 		$id = $Model->getLastInsertID();
 		$Model->updateAll(array('password'=>"'".Authsome::hash($Model->data['User']['password'], Configure::read('SparkPlug.hash.method'), Configure::read('SparkPlug.hash.salt'))."'"),'User.id = '.$id);
 
 		$id = $Model->getLastInsertID();
-		
+
 		$link = Router::url("/users/login?ident=$id&activate=$activate_key",true);
 
 		$message = str_replace('{$link}', $link , $message);
-		
+
 		$mail->Body = $message;
 
 		$mail->FromName = Configure::read('SparkPlug.administrator.from_name');
@@ -47,7 +47,7 @@ class MembershipBehavior extends ModelBehavior
 		$Model->lastRegisteredUser = array('id'=>$id,'activate_key'=>$activate_key);
 
 		if ($Model->useDbConfig!='test_suite')
-			$mail->Send();
+		$mail->Send();
 	}
 
 	function activateAccount(&$Model,$getVars)
@@ -91,10 +91,10 @@ class MembershipBehavior extends ModelBehavior
 		if ($user)
 		{
 			$id = $user['User']['id'];
-			
+				
 			$mail = new phpmailer();
 			$mail->AddAddress($user['User']['email'],$user['User']['username']);
-			
+				
 			$mail->FromName = Configure::read('SparkPlug.administrator.from_name');
 			$mail->From = Configure::read('SparkPlug.administrator.email');
 			$mail->Subject = 'Password Reset';
@@ -105,7 +105,7 @@ class MembershipBehavior extends ModelBehavior
 			$activate_key = md5($password.$salt );
 
 			$link = Router::url ( "/users/activate_password?ident=$id&activate=$activate_key", true );
-		
+
 			$mail->Body = "Dear ".$user['User']['username'].",
 
 Kindly click the link below:
@@ -116,10 +116,10 @@ Then set your password.
 Regards,
 Site Admin";
 			if ($Model->useDbConfig!='test_suite')
-				$mail->Send();
+			$mail->Send();
 
 			$Model->lastResetPassword = array('id'=>$id,'password'=>$password);
-			
+				
 			return true;
 		}
 		else
@@ -149,7 +149,7 @@ Site Admin";
 			$password = $user['User']['password'];
 			$salt = Configure::read ( "Security.salt" );
 			$thekey = md5($password.$salt);
-			
+				
 			if ($thekey==$data['User']['activate'])
 			{
 				$user['User']['password'] = $data['User']['password'];
