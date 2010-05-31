@@ -53,9 +53,9 @@ class AuthsomeComponent extends Object{
 	{
 		$user = $this->__getActiveUser();
 
-            $userModel = $this->__getUserModel();
-            return $userModel->UserGroup->isUserGroupAccess($user['User']['user_group_id'],$access);
-    }
+		$userModel = $this->__getUserModel();
+		return $userModel->UserGroup->isUserGroupAccess($user['User']['user_group_id'],$access);
+	}
 	public function get($field = null) {
 		$user = $this->__getActiveUser();
 
@@ -79,7 +79,7 @@ class AuthsomeComponent extends Object{
 		$args = func_get_args();
 		if (!method_exists($userModel, 'authsomeLogin')) {
 			throw new Exception(
-				$userModel->alias.'::authsomeLogin() is not implemented!'
+			$userModel->alias.'::authsomeLogin() is not implemented!'
 			);
 		}
 
@@ -108,7 +108,7 @@ class AuthsomeComponent extends Object{
 
 		if (!method_exists($userModel, 'authsomePersist')) {
 			throw new Exception(
-				$userModel->alias.'::authsomePersist() is not implemented!'
+			$userModel->alias.'::authsomePersist() is not implemented!'
 			);
 		}
 
@@ -116,10 +116,10 @@ class AuthsomeComponent extends Object{
 		$token = $token.':'.$duration;
 
 		return $this->Cookie->write(
-			$this->settings['cookieKey'],
-			$token,
-			true, // encrypt = true
-			$duration
+		$this->settings['cookieKey'],
+		$token,
+		true, // encrypt = true
+		$duration
 		);
 	}
 
@@ -133,7 +133,7 @@ class AuthsomeComponent extends Object{
 		}
 
 		return $this->__userModel = ClassRegistry::init(
-			$this->settings['model']
+		$this->settings['model']
 		);
 	}
 
@@ -151,7 +151,7 @@ class AuthsomeComponent extends Object{
 		if (is_null($user)) {
 			throw new Exception(
 				'Unable to initilize user'
-			);
+				);
 		}
 
 		return $user;
@@ -209,7 +209,7 @@ class Authsome{
 		if (!$instance) {
 			throw new Exception(
 				'AuthsomeComponent not initialized properly!'
-			);
+				);
 		}
 
 		return $instance;

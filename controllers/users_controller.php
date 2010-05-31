@@ -7,41 +7,41 @@ class UsersController extends SparkPlugAppController {
 	var $layout_settings = array("columns"=>"1");
 	var $uses = array('SparkPlug.User');
 
-    function index()
-    {
-        $this->layout = Configure::read('dashboard_layout');
-        $users = $this->paginate('User');
-        $this->set('users',$users);
-    }
+	function index()
+	{
+		$this->layout = Configure::read('dashboard_layout');
+		$users = $this->paginate('User');
+		$this->set('users',$users);
+	}
 
-    function edit($id=null)
-    {
-        $this->layout = Configure::read('dashboard_layout');
-        $userGroups = $this->User->UserGroup->find('list');
-        $this->set('userGroups',$userGroups);
+	function edit($id=null)
+	{
+		$this->layout = Configure::read('dashboard_layout');
+		$userGroups = $this->User->UserGroup->find('list');
+		$this->set('userGroups',$userGroups);
 
-        if (!empty($this->data))
-        {
-            if ($this->User->save($this->data))
-            {
-                $this->Session->setFlash('User is saved.');
-                $this->redirect('/users/index');
-            }
-        }
-        else
-        {
-            $this->data = $this->User->read(null,$id);
-        }
-    }
+		if (!empty($this->data))
+		{
+			if ($this->User->save($this->data))
+			{
+				$this->Session->setFlash('User is saved.');
+				$this->redirect('/users/index');
+			}
+		}
+		else
+		{
+			$this->data = $this->User->read(null,$id);
+		}
+	}
 
-    function delete($id)
-    {
-        $this->layout = Configure::read('dashboard_layout');
-        $this->User->delete($id);
-        $this->Session->setFlash('User was deleted.');
-        $this->redirect('/users/index');
-    }
-    
+	function delete($id)
+	{
+		$this->layout = Configure::read('dashboard_layout');
+		$this->User->delete($id);
+		$this->Session->setFlash('User was deleted.');
+		$this->redirect('/users/index');
+	}
+
 	function logout()
 	{
 		$this->Authsome->logout();
@@ -75,12 +75,12 @@ class UsersController extends SparkPlugAppController {
 					if($registerAutoLogin) {
 						$user = $this->User->read(null,$this->User->id);
 						$this->Session->write("User",$user);
-				        $this->Session->write("User.id",$user["User"]["id"]);
-				        $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
-				        $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
-				        $this->Session->write('Company.id',$user['Company']['id']);
+						$this->Session->write("User.id",$user["User"]["id"]);
+						$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
+						$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
+						$this->Session->write('Company.id',$user['Company']['id']);
 					}
-			        
+
 					$registerRedirect = Configure::read('SparkPlug.registerRedirect');
 					if(!empty($registerRedirect)) {
 						$this->redirect($registerRedirect);
@@ -90,7 +90,7 @@ class UsersController extends SparkPlugAppController {
 					$this->data['User']['password'] = null;
 					$this->data['User']['confirm_password'] = null;
 				}
-			} else {				
+			} else {
 				$this->data['User']['optin'] = Configure::read('SparkPlug.register_defaults.optin');
 				$this->data['User']['agreement'] = Configure::read('SparkPlug.register_defaults.agreement');
 			}
@@ -143,17 +143,17 @@ class UsersController extends SparkPlugAppController {
 			$this->data['User']['password']='';
 		}
 	}
-    function login_as_user($id)
-    {
-		if(Configure::read('SparkPlug.allow.login_as_user')==false) return; 
-        $user = $this->User->read(null,$id);
-        $this->Session->write("User",$user);
-        $this->Session->write("User.id",$user["User"]["id"]);
-        $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
-        $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
-        $this->Session->write('Company.id',$user['Company']['id']);
-        $this->redirect('/users/dashboard');
-    }
+	function login_as_user($id)
+	{
+		if(Configure::read('SparkPlug.allow.login_as_user')==false) return;
+		$user = $this->User->read(null,$id);
+		$this->Session->write("User",$user);
+		$this->Session->write("User.id",$user["User"]["id"]);
+		$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
+		$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
+		$this->Session->write('Company.id',$user['Company']['id']);
+		$this->redirect('/users/dashboard');
+	}
 	function login()
 	{
 		if (isset($_GET["ident"]))
@@ -190,9 +190,16 @@ class UsersController extends SparkPlugAppController {
 			$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 			$this->Session->write('Company.id',$user['Company']['id']);
 
-			$this->redirect(Configure::read('SparkPlug.loginRedirect'));
+			// let's redirect to the page that triggered the login attempt
+			$originAfterLogin = $this->Session->read('SparkPlug.OriginAfterLogin');
+			if (Configure::read('SparkPlug.redirectOriginAfterLogin') && $originAfterLogin != null) {
+				$this->redirect($originAfterLogin);
+			} else {
+				// redirect to default location
+				$this->redirect(Configure::read('SparkPlug.loginRedirect'));
+			}
 		}
-    }
+	}
 
 	function forgotPassword()
 	{

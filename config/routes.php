@@ -15,4 +15,6 @@ Router::connect('/users/logout', array('plugin' => 'spark_plug', 'controller' =>
 
 Router::connect('/users/forgotPassword', array('plugin' => 'spark_plug', 'controller' => 'users', 'action' => 'forgotPassword'));
 
+Router::connect('/errors/unauthorized', array('plugin' => 'spark_plug', 'controller' => 'errors', 'action' => 'unauthorized'));
+
 ?>
