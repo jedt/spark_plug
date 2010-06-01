@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `user` (`username`),
   KEY `mail` (`email`),
   KEY `users_FKIndex1` (`user_group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `users`
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `name` varchar(255) default NULL,
   `rank` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `user_groups`
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `user_group_permissions` (
   `action` varchar(255) collate latin1_general_ci NOT NULL,
   `allowed` tinyint(1) unsigned NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `user_group_permissions`
