@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `email` varchar(255) default NULL,
   `time_zone_id` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `login_tokens` (
   `created` datetime NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `user` (`username`),
   KEY `mail` (`email`),
   KEY `users_FKIndex1` (`user_group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `users`
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `name` varchar(255) default NULL,
   `rank` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `user_groups`
@@ -118,11 +118,11 @@ INSERT INTO `user_groups` (`id`, `name`, `rank`) VALUES
 CREATE TABLE IF NOT EXISTS `user_group_permissions` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `user_group_id` int(10) unsigned NOT NULL,
-  `controller` varchar(255) collate latin1_general_ci NOT NULL,
-  `action` varchar(255) collate latin1_general_ci NOT NULL,
+  `controller` varchar(255) NOT NULL,
+  `action` varchar(255) NOT NULL,
   `allowed` tinyint(1) unsigned NOT NULL default '1',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=100 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 --
 -- Dumping data for table `user_group_permissions`
