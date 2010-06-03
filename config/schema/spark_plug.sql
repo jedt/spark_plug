@@ -118,6 +118,7 @@ INSERT INTO `user_groups` (`id`, `name`, `rank`) VALUES
 CREATE TABLE IF NOT EXISTS `user_group_permissions` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `user_group_id` int(10) unsigned NOT NULL,
+  `plugin` varchar(255) NOT NULL,
   `controller` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL,
   `allowed` tinyint(1) unsigned NOT NULL default '1',
@@ -128,14 +129,14 @@ CREATE TABLE IF NOT EXISTS `user_group_permissions` (
 -- Dumping data for table `user_group_permissions`
 --
 
-INSERT INTO `user_group_permissions` (`id`, `user_group_id`, `controller`, `action`, `allowed`) VALUES
-(1, 3, 'Users', 'register', 1),
-(2, 3, 'Users', 'login', 1),
-(3, 3, 'Users', 'logout', 1),
-(4, 3, 'Users', 'forgot_password', 1),
-(5, 3, 'Users', 'activate_password', 1),
-(6, 2, 'Users', 'dashboard', 1),
-(7, 1, 'Users', '*', 1),
-(8, 3, 'Users', 'forgotPassword', 1),
-(9, 1, 'UserGroupPermissions', '*', 1),
-(10, 3, 'Errors', '*', 1);
+INSERT INTO `user_group_permissions` (`id`, `user_group_id`, `plugin`, `controller`, `action`, `allowed`) VALUES
+(1, 3, 'spark_plug', 'users', 'register', 1),
+(2, 3, 'spark_plug', 'users', 'login', 1),
+(3, 3, 'spark_plug', 'users', 'logout', 1),
+(4, 3, 'spark_plug', 'users', 'forgot_password', 1),
+(5, 3, 'spark_plug', 'users', 'activate_password', 1),
+(6, 2, 'spark_plug', 'users', 'dashboard', 1),
+(7, 1, 'spark_plug', 'users', '*', 1),
+(8, 3, 'spark_plug', 'users', 'forgotPassword', 1),
+(9, 1, 'spark_plug', 'user_group_permissions', '*', 1),
+(10, 3, 'spark_plug', 'errors', '*', 1)

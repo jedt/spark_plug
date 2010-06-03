@@ -6,6 +6,7 @@
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('user_group_id');?></th>
+	<th><?php echo $paginator->sort('plugin');?></th>
 	<th><?php echo $paginator->sort('controller');?></th>
 	<th><?php echo $paginator->sort('action');?></th>
 	<th><?php echo $paginator->sort('allow');?></th>
@@ -25,6 +26,9 @@ foreach ($permissions as $permission):
 		</td>
 		<td>
 			<?php echo $permission['UserGroup']['name']; ?>
+		</td>
+		<td>
+			<?php echo $permission['UserGroupPermission']['plugin']; ?>
 		</td>
 		<td>
 			<?php echo $permission['UserGroupPermission']['controller']; ?>

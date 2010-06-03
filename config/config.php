@@ -40,12 +40,18 @@ Cache::config('SparkPlug', array(
 ));
 
 
-
+/**
+ * Main entry point to the plugin. This should be called from the app_controller beforeFilter OR 
+ * from the beforeFilter of the controllers you wish to protect
+ * @param $controller  
+ * @return unknown_type
+ */
 function SparkPlugIt(&$controller)
 {
     $pageRedirect = $controller->Session->read('permission_error_redirect');
     $controller->Session->delete('permission_error_redirect');
 
+    //TODO: Check why is this model used
     $controller->company_id = $controller->Session->read('Company.id');
 
     if (empty($pageRedirect))

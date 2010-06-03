@@ -6,6 +6,7 @@
 <?php echo $form->input('user_group_id',array('type'=>'select','options'=>$userGroups,'empty'=>'')); ?>
 <?php echo $form->input('controller'); ?>
 <?php echo $form->input('action'); ?>
+<?php echo $form->input('plugin'); ?>
 <?php echo $form->input('allowed',array('type'=>'radio','options'=>array(1=>'Yes',0=>'No'))); ?>
 <?php echo $form->input('id'); ?>
 <?php echo $form->submit();?>

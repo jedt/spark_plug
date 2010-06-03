@@ -4,7 +4,7 @@
 <?php if (Authsome::check('users/index')):?>
 	<li><?php echo $html->link($trans->__('Manage Users'),'/users/index'); ?></li>
 	<?php endif;?>
-	<?php if (Authsome::check('user_group_permissions/index')): ?>
+	<?php if (Authsome::check('/user_group_permissions/index')): ?>
 	<li><?php echo $html->link($trans->__('Manage Permissions'),'/user_group_permissions/index'); ?>
 	</li>
 	<?php endif;?>
