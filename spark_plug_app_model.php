@@ -16,5 +16,14 @@ class SparkPlugAppModel extends AppModel
 		$value = Set::extract($data, "{s}");
 		return ($value[0] == $this->data[$this->name][$field]);
 	}
+	
+	//Validation message i18n
+	function invalidate($field, $value = true){
+		parent::invalidate($field, $value);
+		App::import('Helper', 'SparkPlug.Trans');
+		$trans = new TransHelper();
+		$this->validationErrors[$field] = $trans->__($value);
+	}
+
 }
 ?>

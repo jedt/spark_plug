@@ -5,6 +5,11 @@ class UserGroupPermission extends SparkPlugAppModel
 	var $belongsTo = array('SparkPlug.UserGroup');
 
 	//TODO: create validation criteria and show errors
+	var $validate = array(
+        'user_group_id' => 'notEmpty',
+		'controller' => 'notEmpty',
+		'action' => 'notEmpty'
+    );
 
 	function afterSave(){
 		$this->__invalidateRulesCache();
