@@ -15,7 +15,7 @@ class UserGroup extends SparkPlugAppModel
 	function isUserGroupAccess($userGroupID,$access,$includeGuestPermission=true)
 	{
 		if (empty($access) || $access=='/' || substr($access,0,4)=='css/'){
-			return true;
+		return true;
 		}
 
 		$permissions = $this->getPermissions($userGroupID,$includeGuestPermission);

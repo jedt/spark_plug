@@ -9,6 +9,8 @@ Configure::write('UserPermissions',array(
 				'controllers/Websites'
 ));
 
+Configure::write('rootURL','localhost/sparky');
+Configure::write('httpRootURL','http://localhost/sparky');
 Configure::write('rootURL','127.0.0.1/spark');
 Configure::write('httpRootURL','http://127.0.0.1/spark');
 Configure::write('projectName','Spark Plug Cakephp Plugin');

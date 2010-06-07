@@ -134,4 +134,3 @@ msgstr "¿ Olvidaste tu contraseña ?"
 
 msgid "This field cannot be left blank"
 msgstr "Por favor, introduzca algún valor en este campo"
-

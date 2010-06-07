@@ -1,3 +1,4 @@
+<?=$html->link('Back to list','/user_group_permissions/index')?>
 <?php echo $html->link('Back to list','/user_group_permissions/index'); ?>
 
 <h2>Edit User Group Permission</h2>
