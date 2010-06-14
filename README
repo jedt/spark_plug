@@ -1,0 +1,56 @@
+ ------------------------------------------------------
+| SparkPlug is a simple auth-acl plugin for cakephp1.3 |
+ ------------------------------------------------------
+ 
+INSTALLATION
+------------
+
+1. Download the latest version or use git to keep the plugin up to date
+
+	cd yourapp/app/plugins
+	git clone git://github.com/jedt/spark_plug.git  
+
+2. Schema import (use your favorite sql tool to import the schema)
+
+	/app/plugins/spark_plug/config/schema/spark_plug.sql
+
+3. Import config files
+
+	3.1 open /app/config/core.php and paste on the last line
+	
+		include_once(ROOT.'/app/plugins/spark_plug/config/config.php');
+		
+	3.2 open /app/config/routes.php and paste on the last line
+		
+		include_once(ROOT.'/app/plugins/spark_plug/config/routes.php');
+		
+4. Include callback in your AppController class
+
+	open or create the file /app/app_controller.php and paste or edit the file. It should look like this 
+	
+	<?php
+		class AppController extends Controller {
+			var $components = array ('Session','SparkPlug.Authsome' => 
+				array('model' => 'User'));
+        	var $uses = array('SparkPlug.UserGroup');
+	
+			function beforeFilter()
+			{
+	    		parent::beforeFilter();
+            	SparkPlugIt($this);
+			}
+		}
+	?>
+
+5. Adjust plugin configuration
+
+	Change /app/plugins/spark_plug/config/config.php (parameters are explained there) to suit your needs.
+	
+
+
+
+ROADMAP
+-------
+
+
+
