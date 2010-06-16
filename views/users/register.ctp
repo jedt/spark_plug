@@ -31,6 +31,6 @@
 </div>
 <div class="rightcol">
 	<h2><?php echo $trans->__('Existing Users'); ?> </h2>
-	<?php echo $html->link($trans->___('Login here'),'/users/login'); ?>
+	<?php echo $html->link($trans->__('Login here'),'/users/login'); ?>
 </div>
 <div style="clear:both"></div>
