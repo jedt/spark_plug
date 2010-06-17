@@ -33,9 +33,20 @@ class UserGroupPermissionsController extends SparkPlugAppController {
 
 	function index()
 	{
+		
 		$this->layout = Configure::read('dashboard_layout');
+		
+		//check for filter plugin available
+		if (array_key_exists('Filter.Filter', $this->components)){
+			$this->helpers[] = 'Filter.Filter';
+			$this->paginate = array_merge_recursive($this->paginate, $this->Filter->paginate);
+			$this->set('filterEnabled', true);
+		} else {
+			$this->set('filterEnabled', false);
+		}
+		
 		$permissions = $this->paginate('UserGroupPermission');
-		$this->set('permissions',$permissions);
+		$this->set('permissions', $permissions);
 	}
 
 }
