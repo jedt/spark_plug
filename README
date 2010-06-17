@@ -46,7 +46,17 @@ INSTALLATION
 
 	Change /app/plugins/spark_plug/config/config.php (parameters are explained there) to suit your needs.
 	
+6. {OPTIONAL} Do you want your permission rules filtered ?
 
+	cd yourapp/app/plugins
+	git clone http://github.com/josegonzalez/cakephp-filter-plugin.git filter
+	
+	then modify in your app_controller components variable this line
+	
+	var $components = array ('Session', 'Filter.Filter', 'SparkPlug.Authsome' => 
+				array('model' => 'User'));  
+
+	(note 'Filter.Filter' component added)
 
 
 ROADMAP
