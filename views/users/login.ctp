@@ -1,4 +1,4 @@
-<h2>Login your username and password</h2>
+<h2>Login with your username and password</h2>
 <?=$form->create('User', array('action' => 'login')); ?>
 <?=$form->input("username")	?>
 <?=$form->input("password",array("type"=>"password")) ?>
