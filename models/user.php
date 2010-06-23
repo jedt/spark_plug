@@ -23,10 +23,10 @@ class User extends SparkPlugAppModel {
 						'message' => 'Username can only be letters, numbers, dash and underscore.'),
 						),
 				'email'=> array(
-					'mustBeEmail'=> array(
-						'rule' => array('email', true),
-						'message' => 'Please supply a valid email address.',
-						'last'=>true),
+					// 'mustBeEmail'=> array(
+					// 	'rule' => array('email', true),
+					// 	'message' => 'Please supply a valid email address.',
+					// 	'last'=>true),
 					'mustUnique'=>array(
 						'rule' =>'isUnique',
 						'message' =>'That email is already registered.',
