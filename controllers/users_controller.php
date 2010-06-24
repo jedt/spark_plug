@@ -79,6 +79,7 @@ class UsersController extends SparkPlugAppController {
 				        $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
 				        $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 				        $this->Session->write('Company.id',$user['Company']['id']);
+						$this->tinymce_filemanager_init();
 					}
 			        
 					$registerRedirect = Configure::read('SparkPlug.registerRedirect');
@@ -152,8 +153,17 @@ class UsersController extends SparkPlugAppController {
         $this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
         $this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
         $this->Session->write('Company.id',$user['Company']['id']);
+		$this->tinymce_filemanager_init();
+		
         $this->redirect('/users/dashboard');
     }
+	
+	function tinymce_filemanager_init() {
+		$_SESSION['isLoggedIn'] = true;
+		$_SESSION['filemanager.filesystem.path'] = MEDIA.'files';
+		$_SESSION['filemanager.filesystem.rootpath'] = MEDIA.'files';		
+	}
+
 	function login()
 	{
 		if (isset($_GET["ident"]))
@@ -189,7 +199,8 @@ class UsersController extends SparkPlugAppController {
 			$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
 			$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 			$this->Session->write('Company.id',$user['Company']['id']);
-
+			$this->tinymce_filemanager_init();
+			
 			$this->redirect(Configure::read('SparkPlug.loginRedirect'));
 		}
     }
