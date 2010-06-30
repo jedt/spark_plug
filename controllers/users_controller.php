@@ -6,17 +6,20 @@ class UsersController extends SparkPlugAppController {
 
 	var $layout_settings = array("columns"=>"1");
 	var $uses = array('SparkPlug.User');
+	
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this->layout = Configure::read('dashboard_layout');
+	}
 
 	function index()
 	{
-		$this->layout = Configure::read('dashboard_layout');
 		$users = $this->paginate('User');
 		$this->set('users',$users);
 	}
 
 	function edit($id=null)
 	{
-		$this->layout = Configure::read('dashboard_layout');
 		$userGroups = $this->User->UserGroup->find('list');
 		$this->set('userGroups',$userGroups);
 
@@ -36,7 +39,6 @@ class UsersController extends SparkPlugAppController {
 
 	function delete($id)
 	{
-		$this->layout = Configure::read('dashboard_layout');
 		$this->User->delete($id);
 		$this->Session->setFlash('User was deleted.');
 		$this->redirect('/users/index');
@@ -50,10 +52,11 @@ class UsersController extends SparkPlugAppController {
 	}
 	function dashboard()
 	{
-		$this->layout = Configure::read('dashboard_layout');
 	}
+
 	function register()
 	{
+		$this->layout = Configure::read('front_end_layout');
 		$user = $this->Authsome->get();
 		if ($user)
 		{
@@ -79,6 +82,7 @@ class UsersController extends SparkPlugAppController {
 						$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
 						$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 						$this->Session->write('Company.id',$user['Company']['id']);
+						$this->tinymce_filemanager_init();
 					}
 
 					$registerRedirect = Configure::read('SparkPlug.registerRedirect');
@@ -128,7 +132,6 @@ class UsersController extends SparkPlugAppController {
 	}
 	function change_password()
 	{
-		$this->layout = Configure::read('dashboard_layout');
 		if ($this->data)
 		{
 			if ($this->User->changePassword($this->data))
@@ -152,10 +155,21 @@ class UsersController extends SparkPlugAppController {
 		$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
 		$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 		$this->Session->write('Company.id',$user['Company']['id']);
+		$this->tinymce_filemanager_init();
 		$this->redirect('/users/dashboard');
 	}
+	
+	function tinymce_filemanager_init() {
+		$_SESSION['isLoggedIn'] = true;
+		//$_SESSION['filemanager.filesystem.path'] = MEDIA.'files';
+		//$_SESSION['filemanager.filesystem.rootpath'] = MEDIA.'files';
+	}
+
+
 	function login()
 	{
+		$this->layout = Configure::read('front_end_layout');
+		
 		if (isset($_GET["ident"]))
 		{
 			if ($this->User->activateAccount($_GET))
@@ -192,6 +206,7 @@ class UsersController extends SparkPlugAppController {
 
 			// let's redirect to the page that triggered the login attempt
 			$originAfterLogin = $this->Session->read('SparkPlug.OriginAfterLogin');
+			$this->tinymce_filemanager_init();
 			if (Configure::read('SparkPlug.redirectOriginAfterLogin') && $originAfterLogin != null) {
 				$this->redirect($originAfterLogin);
 			} else {
@@ -212,31 +227,6 @@ class UsersController extends SparkPlugAppController {
 				$this->flash("Please check your email for instructions on resetting your password.","login",'success');
 			} else {
 				$this->flash("Your email is invalid or not registered.","login",'error');
-			}
-		}
-	}
-
-	function beforeFilter()
-	{
-
-		parent::beforeFilter();
-		return;
-		$pageRedirect = $this->Session->read('permission_error_redirect');
-		$this->Session->delete('permission_error_redirect');
-
-		if (empty($pageRedirect))
-		{
-			if (!$this->Authsome->get('id'))
-			{
-				//anonymous?
-				$actionUrl = $this->params['url']['url'];
-				$permissions = $this->User->UserGroup->getPermissions();
-				if (!in_array(ucwords($actionUrl), $permissions))
-				{
-					$this->Session->write('permission_error_redirect','/users/login');
-					$this->Session->setFlash('Please login to view this page.');
-					$this->redirect('/users/login');
-				}
 			}
 		}
 	}

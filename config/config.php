@@ -9,14 +9,12 @@ Configure::write('UserPermissions',array(
 				'controllers/Websites'
 ));
 
-Configure::write('rootURL','localhost/sparky');
-Configure::write('httpRootURL','http://localhost/sparky');
 Configure::write('rootURL','127.0.0.1/spark');
 Configure::write('httpRootURL','http://127.0.0.1/spark');
 Configure::write('projectName','Spark Plug Cakephp Plugin');
 Configure::write('logged-in-menu','logged_in_menu');
-Configure::write('front_end_layout','default');
-Configure::write('dashboard_layout','default');
+Configure::write('front_end_layout','sparkwufoodefault');
+Configure::write('dashboard_layout','sparkwufoodefault');
 
 Configure::write('SparkPlug.open_registration', true);
 Configure::write('SparkPlug.default_groupid_for_registration', 2); // id of the group used to register new users via users/register
