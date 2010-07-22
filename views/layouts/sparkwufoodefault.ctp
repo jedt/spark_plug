@@ -11,6 +11,7 @@
 	echo $html->css('/spark_plug/css/wufoo/structure');
 	echo $html->css('/spark_plug/css/wufoo/form');
 	echo $html->css('/spark_plug/css/wufoo/theme');
+	echo $html->css('/spark_plug/css/spark');
 	echo $scripts_for_layout;
 	?>
 </head>

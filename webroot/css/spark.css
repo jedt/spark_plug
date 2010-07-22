@@ -1,0 +1,10 @@
+.required {
+	font-weight: bold;
+}
+
+.error-message {
+	color: red;
+	}
+.form-error {
+	color: red;
+	}

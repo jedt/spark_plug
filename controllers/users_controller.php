@@ -184,7 +184,12 @@ class UsersController extends SparkPlugAppController {
 			if (empty($this->data)) {
 				return;
 			}
-
+			
+/*			if (!empty(Authsome::get()){
+				$this->Session->setFlash('Already logged in, logout first');
+				return;
+			}
+*/
 			$user = Authsome::login($this->data['User']);
 
 			if (!$user) {

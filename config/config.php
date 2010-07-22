@@ -21,7 +21,7 @@ Configure::write('SparkPlug.default_groupid_for_registration', 2); // id of the 
 Configure::write('SparkPlug.register_defaults.optin', false);
 Configure::write('SparkPlug.register_defaults.agreement', false);
 
-Configure::write('SparkPlug.OriginAfterLogin', true); // used to redirect after login to the page that triggered the login action
+Configure::write('SparkPlug.redirectOriginAfterLogin', true); // used to redirect after login to the page that triggered the login action
 Configure::write('SparkPlug.loginRedirect', '/users/dashboard');
 Configure::write('SparkPlug.registerRedirect', false);
 Configure::write('SparkPlug.registerAutoLogin', false);
@@ -57,7 +57,9 @@ function SparkPlugIt(&$controller)
     if (empty($pageRedirect))
     {
         $actionUrl = $controller->params['url']['url'];
-        $controller->Session->write('SparkPlug.OriginAfterLogin', '/'.$actionUrl);
+        if ($actionUrl != 'users/login'){
+        	$controller->Session->write('SparkPlug.OriginAfterLogin', '/'.$actionUrl);
+        }
 
 //        if (isset($controller->params['slug']))
 //            $website = $controller->Website->find('Website.subdomain = "'.$controller->params['slug'].'"');
