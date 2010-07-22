@@ -1,6 +1,9 @@
  ------------------------------------------------------
 | SparkPlug is a simple auth-acl plugin for cakephp1.3 |
  ------------------------------------------------------
+
+Default user created = admin
+Default password = 1234
  
 INSTALLATION
 ------------
