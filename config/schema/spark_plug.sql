@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) default NULL,
   `email` varchar(255) default NULL,
   `phone` varchar(255) default NULL,
-  `active` varchar(3) default NULL,
+  `active` tinyint (1) default 1,
   `first_name` varchar(255) default NULL,
   `last_name` varchar(255) default NULL,
   `country` varchar(5) default NULL,
