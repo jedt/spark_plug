@@ -53,6 +53,15 @@ function SparkPlugIt(&$controller)
 
     //TODO: Check why is this model used
     $controller->company_id = $controller->Session->read('Company.id');
+    
+    // check if the controller $uses = null to bind the required models before continue. This corrects issue 
+    if (!is_array($controller->uses) || !in_array('SparkPlug.UserGroup', $controller->uses)){
+    	//debug ('binding SparkPlug.UserGroup model');
+    	//code from http://www.pseudocoder.com/archives/one-more-tip-for-speeding-up-cakephp-apps
+    	//the loadModel way
+		$controller->loadModel('SparkPlug.UserGroup');
+		//end of code from http://www.pseudocoder.com/archives/one-more-tip-for-speeding-up-cakephp-apps
+    }
 
     if (empty($pageRedirect))
     {
