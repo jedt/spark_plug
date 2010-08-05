@@ -1,6 +1,9 @@
 <?php echo $html->link($trans->__('Back to dashboard'),'/users/dashboard'); ?>
 
 <h2><?php echo $trans->__('Users'); ?> </h2>
+<div>
+<?php echo $html->link($trans->__('Add new user', true), array('action'=>'add')); ?>
+</div>
 <div class="table_wrap browse">
 <table class="full" cellspacing="1" cellpadding="4" border="0" bgcolor="#dddddd" width="100%">
 <tr>
@@ -54,6 +57,9 @@ foreach ($users as $user):
 	</tr>
 <?php endforeach; ?>
 </table>
+</div>
+<div>
+<?php echo $html->link($trans->__('Add new user', true), array('action'=>'add')); ?>
 </div>
 
 <div class="paging">

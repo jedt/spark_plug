@@ -6,7 +6,7 @@ class UsersController extends SparkPlugAppController {
 
 	var $layout_settings = array("columns"=>"1");
 	var $uses = array('SparkPlug.User');
-	
+
 	function beforeFilter(){
 		parent::beforeFilter();
 		$this->layout = Configure::read('dashboard_layout');
@@ -54,12 +54,17 @@ class UsersController extends SparkPlugAppController {
 	{
 	}
 
+	/**
+	 *
+	 * Used to allow non registered users to create an account
+	 */
 	function register()
 	{
 		$this->layout = Configure::read('front_end_layout');
 		$user = $this->Authsome->get();
 		if ($user)
 		{
+			$this->Session->setFlash('You are logged in, please logout to register a new account');
 			$this->redirect(Configure::read('SparkPlug.loginRedirect'));
 		}
 		else
@@ -68,7 +73,6 @@ class UsersController extends SparkPlugAppController {
 				$this->Session->setFlash('Please contact an administrator to setup an account');
 				$this->redirect('/users/login');
 			}
-			$this->layout = Configure::read('front_end_layout');
 
 			if ($this->data)
 			{
@@ -100,6 +104,28 @@ class UsersController extends SparkPlugAppController {
 			}
 		}
 	}
+
+
+	/**
+	 *
+	 * Used by the system admin to create a new user
+	 */
+	function add(){
+		$this->layout = Configure::read('front_end_layout');
+
+		if ($this->data)
+		{
+			if ($this->User->save($this->data))
+			{
+				$this->Session->setFlash("User {$this->data['User']['username']} saved correctly.");
+				$this->data = array();
+			} else {
+			}
+		} else {
+			$this->data = array();
+		} 
+	}
+
 	function activate_password()
 	{
 		$this->layout = Configure::read('front_end_layout');
@@ -158,7 +184,7 @@ class UsersController extends SparkPlugAppController {
 		$this->tinymce_filemanager_init();
 		$this->redirect('/users/dashboard');
 	}
-	
+
 	function tinymce_filemanager_init() {
 		$_SESSION['isLoggedIn'] = true;
 		//$_SESSION['filemanager.filesystem.path'] = MEDIA.'files';
@@ -169,7 +195,7 @@ class UsersController extends SparkPlugAppController {
 	function login()
 	{
 		$this->layout = Configure::read('front_end_layout');
-		
+
 		if (isset($_GET["ident"]))
 		{
 			if ($this->User->activateAccount($_GET))
@@ -184,12 +210,12 @@ class UsersController extends SparkPlugAppController {
 			if (empty($this->data)) {
 				return;
 			}
-			
-/*			if (!empty(Authsome::get()){
+
+			/*			if (!empty(Authsome::get()){
 				$this->Session->setFlash('Already logged in, logout first');
 				return;
-			}
-*/
+				}
+				*/
 			$user = Authsome::login($this->data['User']);
 
 			if (!$user) {

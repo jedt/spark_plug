@@ -2,7 +2,7 @@
 class SparkPlugAppController extends AppController
 {
     var $components = array(
-        'SparkPlug.Authsome' => array(
+        'Session', 'SparkPlug.Authsome' => array(
             'model' => 'User'
         )
     );

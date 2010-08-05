@@ -23,10 +23,13 @@ class User extends SparkPlugAppModel {
 						'message' => 'Username can only be letters, numbers, dash and underscore.'),
 						),
 				'email'=> array(
-					// 'mustBeEmail'=> array(
-					// 	'rule' => array('email', true),
-					// 	'message' => 'Please supply a valid email address.',
-					// 	'last'=>true),
+					 'mustBeEmail'=> array(
+						// code borrowed from here http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+						// thanks to James Watts and Francisco Jose Martin Moreno
+					 	'rule' => '/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i',
+					 	// end of borrowed code
+					 	'message' => 'Please supply a valid email address.',
+					 	'last'=>true),
 					'mustUnique'=>array(
 						'rule' =>'isUnique',
 						'message' =>'That email is already registered.',
@@ -35,7 +38,7 @@ class User extends SparkPlugAppModel {
 				'confirm_password'=>array(
 						'mustBeLonger'=>array(
 							'rule' => array('minLength', 4),
-							'message'=> 'You must fill in and confirm your password.',
+							'message'=> 'Your password is too short, please provide 4 characters minimum.',
 						),
 						'mustMatch'=>array(
 							'rule' => array('verifies', 'password'),
