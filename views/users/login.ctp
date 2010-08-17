@@ -3,6 +3,9 @@
 </div>
 <?php echo $form->create('User', array('action' => 'login', 'class' => 'wufoo  page')); ?>
 <ul>
+<?php if ($this->Session->read('SparkPlug.facebookEnabled')) { ?>
+<li><?php echo $facebook->login(array('perms' => 'email', 'background' => 'dark')); ?></li>
+<?php } ?>
 <li><?php echo $form->input("username", array('label' => $trans->__('username'), 'class' => 'field text large'))	?></li>
 <li><?php echo $form->input("password",array("type"=>"password", 'label' => $trans->__('password'), 'class' => 'field text large')) ?></li>
 <li><?php echo $form->input('remember', array('type' => 'checkbox', 'label' => false, 'div' => false)); 

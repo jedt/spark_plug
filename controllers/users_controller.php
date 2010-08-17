@@ -10,6 +10,13 @@ class UsersController extends SparkPlugAppController {
 	function beforeFilter(){
 		parent::beforeFilter();
 		$this->layout = Configure::read('dashboard_layout');
+		//check for facebook connect plugin available
+		if (array_key_exists('Facebook.Connect', $this->components)){
+			$this->helpers[] = 'Facebook.Facebook';
+			$this->Session->write('SparkPlug.facebookEnabled', true);
+		} else {
+			$this->Session->write('SparkPlug.facebookEnabled', false);
+		}
 	}
 
 	function index()
@@ -48,7 +55,8 @@ class UsersController extends SparkPlugAppController {
 	{
 		$this->Authsome->logout();
 		$this->Session->setFlash('You are now logged out.');
-		$this->redirect('/users/login');
+		$this->Session->write('SparkPlug.Users.loggedInByFacebook', false);
+		$this->redirect('/');
 	}
 	function dashboard()
 	{
@@ -123,7 +131,7 @@ class UsersController extends SparkPlugAppController {
 			}
 		} else {
 			$this->data = array();
-		} 
+		}
 	}
 
 	function activate_password()
@@ -175,14 +183,19 @@ class UsersController extends SparkPlugAppController {
 	function login_as_user($id)
 	{
 		if(Configure::read('SparkPlug.allow.login_as_user')==false) return;
+		$this->force_login_as_user($id);
+	}
+
+	function force_login_as_user($id){
 		$user = $this->User->read(null,$id);
 		$this->Session->write("User",$user);
 		$this->Session->write("User.id",$user["User"]["id"]);
 		$this->Session->write("UserGroup.id",$user["UserGroup"]["id"]);
 		$this->Session->write("UserGroup.name",$user["UserGroup"]["name"]);
 		$this->Session->write('Company.id',$user['Company']['id']);
+		//debug($user);
 		$this->tinymce_filemanager_init();
-		$this->redirect('/users/dashboard');
+		$this->redirect(Configure::read('SparkPlug.loginRedirect'));
 	}
 
 	function tinymce_filemanager_init() {
@@ -207,15 +220,51 @@ class UsersController extends SparkPlugAppController {
 		}
 		else
 		{
+			//check for facebook connect plugin available
+			if ($this->Session->read('SparkPlug.facebookEnabled')){
+				// check if there is a facebook account logged in and there is no user logged in
+				if($this->Connect->me && !$this->Authsome->get()){
+					// check if there is an user linked to this facebook account
+					$conds = array('external_auth_id' => 'facebook_' . $this->Connect->me['id']);
+					$fbuser = $this->User->find($conds);
+
+					// if user exists, do login with it
+					if($fbuser){
+						//debug('user exists. login');
+						$this->Session->write('SparkPlug.Users.loggedInByFacebook', true);
+						$this->force_login_as_user($fbuser['User']['id']);
+
+					} else {
+						//debug('user does not exist. create');
+						// if the user does not exist, create the user using his email as login and do login
+						$newUser = array();
+						$newUser['User']['username'] = $this->Connect->me['id'];
+						$newUser['User']['password'] = md5( uniqid() );
+						$newUser['User']['email'] = $this->Connect->me['email'];
+						$newUser['User']['user_group_id'] = Configure::read('SparkPlug.default_group_for_new_facebook_accounts');
+						$newUser['User']['external_auth_id'] = 'facebook_' . $this->Connect->me['id'];
+						if ($this->User->save($newUser['User'])){
+							$this->Session->setFlash('New user created and linked with your facebook account');
+							$this->Session->write('SparkPlug.Users.loggedInByFacebook', true);
+							$this->force_login_as_user($this->User->getLastInsertId());
+						} else {
+							$this->Session->setFlash('There was an error creating the new user');
+						}
+					}
+
+					///debug($this->Connect->me);
+				}
+			}
+				
 			if (empty($this->data)) {
 				return;
 			}
 
 			/*			if (!empty(Authsome::get()){
-				$this->Session->setFlash('Already logged in, logout first');
-				return;
-				}
-				*/
+			 $this->Session->setFlash('Already logged in, logout first');
+			 return;
+			 }
+			 */
 			$user = Authsome::login($this->data['User']);
 
 			if (!$user) {

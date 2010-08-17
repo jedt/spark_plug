@@ -61,9 +61,34 @@ INSTALLATION
 
 	(note 'Filter.Filter' component added)
 
+7. {OPTIONAL} Do you want facebook users to access your app ?
+
+	cd yourapp/app/plugins
+	git clone http://github.com/webtechnick/CakePHP-Facebook-Plugin.git facebook
+	
+	then modify in your app_controller components variable this line
+	
+	var $components = array ('Session', 'Facebook.Connect', 'SparkPlug.Authsome' => 
+				array('model' => 'User'));  
+
+	(note 'Facebook.Connect' component added)
+	
+	then copy the file
+	yourapp/app/plugins/facebook/facebook.php.example into yourapp/config/facebook.php
+	
+	then edit file yourapp/config/facebook.php
+	and put your facebook app keys
+	
+	Yes, you have to login previously to your facebook account and then create a new application, using fb developers api 
+	You will first need to update your facebook application with the connect url of your application's url.  This is done on 
+	the facebook application settings. http://www.facebook.com/developers/apps.php) 
 
 ROADMAP
 -------
 
 
 
+TODO
+----
+
+please check github page (github.com/jedt/spark_plug.git) 

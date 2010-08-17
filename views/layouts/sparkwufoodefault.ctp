@@ -1,5 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php if ($this->Session->read('SparkPlug.facebookEnabled')) { 
+	echo $facebook->html();	
+} else { ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<?php } ?>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title><?php echo $title_for_layout; ?></title>
@@ -35,5 +39,6 @@ array('target' => '_blank', 'escape' => false)
 ?></div>
 </div>
 <?php echo $this->element('sql_dump'); ?>
+<?php if ($this->Session->read('facebookEnabled')) echo $facebook->init(); ?>
 </body>
 </html>

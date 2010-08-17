@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `city` varchar(255) default NULL,
   `state` varchar(255) default NULL,
   `zip_code` varchar(255) NOT NULL,
+  `external_auth_id` varchar(255) default NULL,
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`),
