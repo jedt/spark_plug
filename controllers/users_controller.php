@@ -159,9 +159,9 @@ class UsersController extends SparkPlugAppController {
     }
 	
 	function tinymce_filemanager_init() {
-		$_SESSION['isLoggedIn'] = true;
-		$_SESSION['filemanager.filesystem.path'] = MEDIA.'files';
-		$_SESSION['filemanager.filesystem.rootpath'] = MEDIA.'files';		
+		@$_SESSION['isLoggedIn'] = true;
+		@$_SESSION['filemanager.filesystem.path'] = MEDIA.'files';
+		@$_SESSION['filemanager.filesystem.rootpath'] = MEDIA.'files';
 	}
 
 	function login()
