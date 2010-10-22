@@ -13,7 +13,6 @@
 
 		<li><?php echo $form->submit($trans->__('Register')); ?></li>
 		</ul>
-		<?php echo $form->hidden("user_group_id",array("value"=>"2")); ?>
 		<?php echo $form->end(); ?>
 
 <p><?php echo $trans->__('Already registered ?');?> <?php echo $html->link($trans->__("Login Here"),"/users/login") ?></p>

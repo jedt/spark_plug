@@ -80,10 +80,12 @@ class UsersController extends SparkPlugAppController {
 			if(!Configure::read('SparkPlug.open_registration')) {
 				$this->Session->setFlash('Please contact an administrator to setup an account');
 				$this->redirect('/users/login');
+				return;
 			}
 
 			if ($this->data)
 			{
+				$this->data['User']['user_group_id'] = Configure::read('SparkPlug.default_groupid_for_registration');
 				if ($this->User->save($this->data))
 				{
 					$registerAutoLogin = Configure::read('SparkPlug.registerAutoLogin');
