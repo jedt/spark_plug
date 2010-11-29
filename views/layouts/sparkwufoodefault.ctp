@@ -39,6 +39,6 @@ array('target' => '_blank', 'escape' => false)
 ?></div>
 </div>
 <?php echo $this->element('sql_dump'); ?>
-<?php if ($this->Session->read('facebookEnabled')) echo $facebook->init(); ?>
+<?php if ($this->Session->read('SparkPlug.facebookEnabled')) echo $facebook->init(); ?>
 </body>
 </html>
