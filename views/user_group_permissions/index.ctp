@@ -35,7 +35,7 @@
 		<td><?php echo $permission['UserGroupPermission']['plugin']; ?></td>
 		<td><?php echo $permission['UserGroupPermission']['controller']; ?></td>
 		<td><?php echo $permission['UserGroupPermission']['action']; ?></td>
-		<td><?php echo $permission['UserGroupPermission']['allowed']; ?></td>
+		<td><?php echo $permission['UserGroupPermission']['allowed'] ? 'Yes' : 'No'; ?></td>
 		<td class="actions"><?php echo $html->link(__('Edit', true), array('action'=>'edit', $permission['UserGroupPermission']['id'])); ?>
 		<?php echo $html->link(__('Delete', true), array('action'=>'delete', $permission['UserGroupPermission']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $permission['UserGroupPermission']['id'])); ?>
 		</td>
