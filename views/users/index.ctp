@@ -13,7 +13,7 @@
 	<th><?php echo $paginator->sort('last_name');?></th>
 	<th><?php echo $paginator->sort('username');?></th>
     <th><?php echo $paginator->sort('email');?></th>
-    <th><?php echo $paginator->sort('active');?></th>
+    <th><?php echo $paginator->sort('active') ? 'Yes' : 'No';?></th>
     <th><?php echo $paginator->sort('created');?></th>
 	<th class="actions"><?php $trans->__('Actions');?></th>
 </tr>
