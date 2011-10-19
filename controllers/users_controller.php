@@ -168,7 +168,7 @@ class UsersController extends SparkPlugAppController {
 	}
 	function change_password()
 	{
-		if ($this->data)
+		if (isset($this->data['User']['id']) && $this->data['User']['id'] == $this->Session->read('User.id') )
 		{
 			if ($this->User->changePassword($this->data))
 			{
